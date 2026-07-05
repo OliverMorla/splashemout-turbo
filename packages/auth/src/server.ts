@@ -17,7 +17,19 @@ function getRequiredEnv(name: string) {
 }
 
 function getDatabaseUrl() {
-  return process.env.SUPABASE_DB_URL ?? getRequiredEnv("DATABASE_URL");
+  return process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL;
+}
+
+function getDatabasePool() {
+  const databaseUrl = getDatabaseUrl();
+
+  if (!databaseUrl) {
+    return undefined;
+  }
+
+  return new Pool({
+    connectionString: databaseUrl,
+  });
 }
 
 function getTrustedOrigins() {
@@ -40,9 +52,7 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   trustedOrigins: getTrustedOrigins(),
 
-  database: new Pool({
-    connectionString: getDatabaseUrl(),
-  }),
+  database: getDatabasePool(),
 
   emailAndPassword: {
     enabled: true,
