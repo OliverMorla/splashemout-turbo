@@ -11,60 +11,83 @@ const optionalString = () => optionalEnv(z.string().trim().min(1));
 const optionalUrl = () => optionalEnv(z.string().trim().url());
 const requiredUrl = z.string().trim().url();
 
-const serverEnvSchema = z.object({
-  AI_PROVIDER: optionalEnv(z.enum(["anthropic", "openai", "openrouter"])),
-  ANTHROPIC_API_KEY: optionalString(),
-  AWS_ACCESS_KEY_ID: optionalString(),
-  AWS_REGION: optionalString(),
-  AWS_S3_BUCKET: optionalString(),
-  AWS_S3_ENDPOINT: optionalUrl(),
-  AWS_SECRET_ACCESS_KEY: optionalString(),
-  BETTER_AUTH_SECRET: requiredEnv,
-  BETTER_AUTH_TRUSTED_ORIGINS: optionalString(),
-  BETTER_AUTH_URL: requiredUrl,
-  CLOUDFLARE_R2_ACCESS_KEY_ID: optionalString(),
-  CLOUDFLARE_R2_ACCOUNT_ID: optionalString(),
-  CLOUDFLARE_R2_BUCKET: optionalString(),
-  CLOUDFLARE_R2_ENDPOINT: optionalUrl(),
-  CLOUDFLARE_R2_PUBLIC_URL: optionalUrl(),
-  CLOUDFLARE_R2_SECRET_ACCESS_KEY: optionalString(),
-  DATABASE_URL: optionalString(),
-  INNGEST_EVENT_KEY: optionalString(),
-  INNGEST_SIGNING_KEY: optionalString(),
-  NODE_ENV: optionalEnv(z.enum(["development", "production", "test"])).default(
-    "development",
-  ),
-  OPENAI_API_KEY: optionalString(),
-  OPENROUTER_API_KEY: optionalString(),
-  OPENROUTER_BASE_URL: optionalUrl(),
-  OPENROUTER_MODEL: optionalString(),
-  PAYLOAD_CONFIG_PATH: optionalString(),
-  PAYLOAD_PUBLIC_SERVER_URL: optionalUrl(),
-  PAYLOAD_SECRET: requiredEnv,
-  PERSONA_API_KEY: optionalString(),
-  PERSONA_TEMPLATE_ID: optionalString(),
-  PERSONA_WEBHOOK_SECRET: optionalString(),
-  POSTHOG_API_KEY: optionalString(),
-  POSTHOG_PROJECT_ID: optionalString(),
-  RESEND_API_KEY: optionalString(),
-  RESEND_AUDIENCE_ID: optionalString(),
-  RESEND_FROM_EMAIL: optionalEnv(z.string().trim().email()),
-  RESEND_FROM_NAME: optionalString(),
-  SENTRY_AUTH_TOKEN: optionalString(),
-  SENTRY_ORG: optionalString(),
-  SENTRY_PROJECT: optionalString(),
-  STRIPE_CANCEL_URL: optionalUrl(),
-  STRIPE_CUSTOMER_PORTAL_URL: optionalUrl(),
-  STRIPE_PRICE_ID: optionalString(),
-  STRIPE_SECRET_KEY: optionalString(),
-  STRIPE_SUCCESS_URL: optionalUrl(),
-  STRIPE_WEBHOOK_SECRET: optionalString(),
-  SUPABASE_DB_URL: optionalString(),
-  SUPABASE_JWT_SECRET: optionalString(),
-  SUPABASE_SERVICE_ROLE_KEY: optionalString(),
-  WEBFLOW_API_TOKEN: optionalString(),
-  WEBFLOW_SITE_ID: optionalString(),
-});
+type RefinementContext = {
+  addIssue(issue: { code: "custom"; message: string; path: string[] }): void;
+};
+
+const serverEnvSchema = z
+  .object({
+    AI_PROVIDER: optionalEnv(z.enum(["anthropic", "openai", "openrouter"])),
+    ANTHROPIC_API_KEY: optionalString(),
+    AWS_ACCESS_KEY_ID: optionalString(),
+    AWS_REGION: optionalString(),
+    AWS_S3_BUCKET: optionalString(),
+    AWS_S3_ENDPOINT: optionalUrl(),
+    AWS_SECRET_ACCESS_KEY: optionalString(),
+    BETTER_AUTH_SECRET: requiredEnv,
+    BETTER_AUTH_TRUSTED_ORIGINS: optionalString(),
+    BETTER_AUTH_URL: requiredUrl,
+    CLOUDFLARE_R2_ACCESS_KEY_ID: requiredEnv,
+    CLOUDFLARE_R2_ACCOUNT_ID: optionalString(),
+    CLOUDFLARE_R2_BUCKET: requiredEnv,
+    CLOUDFLARE_R2_ENDPOINT: optionalUrl(),
+    CLOUDFLARE_R2_PUBLIC_URL: optionalUrl(),
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY: requiredEnv,
+    DATABASE_URL: optionalString(),
+    INNGEST_EVENT_KEY: optionalString(),
+    INNGEST_SIGNING_KEY: optionalString(),
+    NODE_ENV: optionalEnv(
+      z.enum(["development", "production", "test"]),
+    ).default("development"),
+    OPENAI_API_KEY: optionalString(),
+    OPENROUTER_API_KEY: optionalString(),
+    OPENROUTER_BASE_URL: optionalUrl(),
+    OPENROUTER_MODEL: optionalString(),
+    PAYLOAD_CONFIG_PATH: optionalString(),
+    PAYLOAD_PUBLIC_SERVER_URL: optionalUrl(),
+    PAYLOAD_SECRET: requiredEnv,
+    PERSONA_API_KEY: optionalString(),
+    PERSONA_TEMPLATE_ID: optionalString(),
+    PERSONA_WEBHOOK_SECRET: optionalString(),
+    POSTHOG_API_KEY: optionalString(),
+    POSTHOG_PROJECT_ID: optionalString(),
+    RESEND_API_KEY: requiredEnv,
+    RESEND_AUDIENCE_ID: optionalString(),
+    RESEND_FROM_EMAIL: requiredEnv.email(),
+    RESEND_FROM_NAME: optionalString(),
+    SENTRY_AUTH_TOKEN: optionalString(),
+    SENTRY_ORG: optionalString(),
+    SENTRY_PROJECT: optionalString(),
+    STRIPE_CANCEL_URL: optionalUrl(),
+    STRIPE_CUSTOMER_PORTAL_URL: optionalUrl(),
+    STRIPE_PRICE_ID: optionalString(),
+    STRIPE_SECRET_KEY: optionalString(),
+    STRIPE_SUCCESS_URL: optionalUrl(),
+    STRIPE_WEBHOOK_SECRET: optionalString(),
+    SUPABASE_DB_URL: optionalString(),
+    SUPABASE_JWT_SECRET: optionalString(),
+    SUPABASE_SERVICE_ROLE_KEY: optionalString(),
+    WEBFLOW_API_TOKEN: optionalString(),
+    WEBFLOW_SITE_ID: optionalString(),
+  })
+  .superRefine((env, context: RefinementContext) => {
+    if (!env.SUPABASE_DB_URL && !env.DATABASE_URL) {
+      context.addIssue({
+        code: "custom",
+        message: "SUPABASE_DB_URL or DATABASE_URL is required",
+        path: ["SUPABASE_DB_URL"],
+      });
+    }
+
+    if (!env.CLOUDFLARE_R2_ENDPOINT && !env.CLOUDFLARE_R2_ACCOUNT_ID) {
+      context.addIssue({
+        code: "custom",
+        message:
+          "CLOUDFLARE_R2_ACCOUNT_ID is required when CLOUDFLARE_R2_ENDPOINT is not set",
+        path: ["CLOUDFLARE_R2_ACCOUNT_ID"],
+      });
+    }
+  });
 
 export const serverEnv = serverEnvSchema.parse({
   AI_PROVIDER: process.env.AI_PROVIDER,
