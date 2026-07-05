@@ -1,0 +1,143 @@
+import { z } from "zod";
+
+const optionalEnv = <Schema extends z.ZodType>(schema: Schema) =>
+  z.preprocess(
+    (value: unknown) => (value === "" ? undefined : value),
+    schema.optional(),
+  );
+
+const requiredEnv = z.string().trim().min(1);
+const optionalString = () => optionalEnv(z.string().trim().min(1));
+const optionalUrl = () => optionalEnv(z.string().trim().url());
+const requiredUrl = z.string().trim().url();
+
+type RefinementContext = {
+  addIssue(issue: { code: "custom"; message: string; path: string[] }): void;
+};
+
+const serverEnvSchema = z
+  .object({
+    AI_PROVIDER: optionalEnv(z.enum(["anthropic", "openai", "openrouter"])),
+    ANTHROPIC_API_KEY: optionalString(),
+    AWS_ACCESS_KEY_ID: optionalString(),
+    AWS_REGION: optionalString(),
+    AWS_S3_BUCKET: optionalString(),
+    AWS_S3_ENDPOINT: optionalUrl(),
+    AWS_SECRET_ACCESS_KEY: optionalString(),
+    BETTER_AUTH_SECRET: requiredEnv,
+    BETTER_AUTH_TRUSTED_ORIGINS: optionalString(),
+    BETTER_AUTH_URL: requiredUrl,
+    CLOUDFLARE_R2_ACCESS_KEY_ID: requiredEnv,
+    CLOUDFLARE_R2_ACCOUNT_ID: optionalString(),
+    CLOUDFLARE_R2_BUCKET: requiredEnv,
+    CLOUDFLARE_R2_ENDPOINT: optionalUrl(),
+    CLOUDFLARE_R2_PUBLIC_URL: optionalUrl(),
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY: requiredEnv,
+    DATABASE_URL: optionalString(),
+    INNGEST_EVENT_KEY: optionalString(),
+    INNGEST_SIGNING_KEY: optionalString(),
+    NODE_ENV: optionalEnv(
+      z.enum(["development", "production", "test"]),
+    ).default("development"),
+    OPENAI_API_KEY: optionalString(),
+    OPENROUTER_API_KEY: optionalString(),
+    OPENROUTER_BASE_URL: optionalUrl(),
+    OPENROUTER_MODEL: optionalString(),
+    PAYLOAD_CONFIG_PATH: optionalString(),
+    PAYLOAD_PUBLIC_SERVER_URL: optionalUrl(),
+    PAYLOAD_SECRET: requiredEnv,
+    PERSONA_API_KEY: optionalString(),
+    PERSONA_TEMPLATE_ID: optionalString(),
+    PERSONA_WEBHOOK_SECRET: optionalString(),
+    POSTHOG_API_KEY: optionalString(),
+    POSTHOG_PROJECT_ID: optionalString(),
+    RESEND_API_KEY: requiredEnv,
+    RESEND_AUDIENCE_ID: optionalString(),
+    RESEND_FROM_EMAIL: requiredEnv.email(),
+    RESEND_FROM_NAME: optionalString(),
+    SENTRY_AUTH_TOKEN: optionalString(),
+    SENTRY_ORG: optionalString(),
+    SENTRY_PROJECT: optionalString(),
+    STRIPE_CANCEL_URL: optionalUrl(),
+    STRIPE_CUSTOMER_PORTAL_URL: optionalUrl(),
+    STRIPE_PRICE_ID: optionalString(),
+    STRIPE_SECRET_KEY: optionalString(),
+    STRIPE_SUCCESS_URL: optionalUrl(),
+    STRIPE_WEBHOOK_SECRET: optionalString(),
+    SUPABASE_DB_URL: optionalString(),
+    SUPABASE_JWT_SECRET: optionalString(),
+    SUPABASE_SERVICE_ROLE_KEY: optionalString(),
+    WEBFLOW_API_TOKEN: optionalString(),
+    WEBFLOW_SITE_ID: optionalString(),
+  })
+  .superRefine((env, context: RefinementContext) => {
+    if (!env.SUPABASE_DB_URL && !env.DATABASE_URL) {
+      context.addIssue({
+        code: "custom",
+        message: "SUPABASE_DB_URL or DATABASE_URL is required",
+        path: ["SUPABASE_DB_URL"],
+      });
+    }
+
+    if (!env.CLOUDFLARE_R2_ENDPOINT && !env.CLOUDFLARE_R2_ACCOUNT_ID) {
+      context.addIssue({
+        code: "custom",
+        message:
+          "CLOUDFLARE_R2_ACCOUNT_ID is required when CLOUDFLARE_R2_ENDPOINT is not set",
+        path: ["CLOUDFLARE_R2_ACCOUNT_ID"],
+      });
+    }
+  });
+
+export const serverEnv = serverEnvSchema.parse({
+  AI_PROVIDER: process.env.AI_PROVIDER,
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_REGION: process.env.AWS_REGION,
+  AWS_S3_BUCKET: process.env.AWS_S3_BUCKET,
+  AWS_S3_ENDPOINT: process.env.AWS_S3_ENDPOINT,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+  BETTER_AUTH_TRUSTED_ORIGINS: process.env.BETTER_AUTH_TRUSTED_ORIGINS,
+  BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+  CLOUDFLARE_R2_ACCESS_KEY_ID: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
+  CLOUDFLARE_R2_ACCOUNT_ID: process.env.CLOUDFLARE_R2_ACCOUNT_ID,
+  CLOUDFLARE_R2_BUCKET: process.env.CLOUDFLARE_R2_BUCKET,
+  CLOUDFLARE_R2_ENDPOINT: process.env.CLOUDFLARE_R2_ENDPOINT,
+  CLOUDFLARE_R2_PUBLIC_URL: process.env.CLOUDFLARE_R2_PUBLIC_URL,
+  CLOUDFLARE_R2_SECRET_ACCESS_KEY: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
+  DATABASE_URL: process.env.DATABASE_URL,
+  INNGEST_EVENT_KEY: process.env.INNGEST_EVENT_KEY,
+  INNGEST_SIGNING_KEY: process.env.INNGEST_SIGNING_KEY,
+  NODE_ENV: process.env.NODE_ENV,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
+  OPENROUTER_BASE_URL: process.env.OPENROUTER_BASE_URL,
+  OPENROUTER_MODEL: process.env.OPENROUTER_MODEL,
+  PAYLOAD_CONFIG_PATH: process.env.PAYLOAD_CONFIG_PATH,
+  PAYLOAD_PUBLIC_SERVER_URL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
+  PERSONA_API_KEY: process.env.PERSONA_API_KEY,
+  PERSONA_TEMPLATE_ID: process.env.PERSONA_TEMPLATE_ID,
+  PERSONA_WEBHOOK_SECRET: process.env.PERSONA_WEBHOOK_SECRET,
+  POSTHOG_API_KEY: process.env.POSTHOG_API_KEY,
+  POSTHOG_PROJECT_ID: process.env.POSTHOG_PROJECT_ID,
+  RESEND_API_KEY: process.env.RESEND_API_KEY,
+  RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
+  RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
+  RESEND_FROM_NAME: process.env.RESEND_FROM_NAME,
+  SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+  SENTRY_ORG: process.env.SENTRY_ORG,
+  SENTRY_PROJECT: process.env.SENTRY_PROJECT,
+  STRIPE_CANCEL_URL: process.env.STRIPE_CANCEL_URL,
+  STRIPE_CUSTOMER_PORTAL_URL: process.env.STRIPE_CUSTOMER_PORTAL_URL,
+  STRIPE_PRICE_ID: process.env.STRIPE_PRICE_ID,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  STRIPE_SUCCESS_URL: process.env.STRIPE_SUCCESS_URL,
+  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  SUPABASE_DB_URL: process.env.SUPABASE_DB_URL,
+  SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
+  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+  WEBFLOW_API_TOKEN: process.env.WEBFLOW_API_TOKEN,
+  WEBFLOW_SITE_ID: process.env.WEBFLOW_SITE_ID,
+});

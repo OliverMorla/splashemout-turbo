@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-30T00:00:00.000Z",
+  "title": "Design System: Magnet Care",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Chalk Ground",
+        "canonical": "#f7f4ee",
+        "tonalRamp": [
+          "oklch(18% 0.012 80)",
+          "oklch(28% 0.012 80)",
+          "oklch(40% 0.012 80)",
+          "oklch(54% 0.012 80)",
+          "oklch(68% 0.012 80)",
+          "oklch(80% 0.012 80)",
+          "oklch(90% 0.012 80)",
+          "oklch(96% 0.012 80)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Plum Ink",
+        "canonical": "#1e1b24",
+        "tonalRamp": [
+          "#1e1b24",
+          "#2f2a38",
+          "#453e50",
+          "#5d5368",
+          "#756b80",
+          "#938a9c",
+          "#b8b1bf",
+          "#e4e0e8"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Stone",
+        "canonical": "#ede8e0",
+        "tonalRamp": [
+          "#2d2924",
+          "#433d36",
+          "#5c544b",
+          "#796f63",
+          "#9a9084",
+          "#bdb4aa",
+          "#ddd6cd",
+          "#ede8e0"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Weathered Plum",
+        "canonical": "#6b6370",
+        "tonalRamp": [
+          "#201d23",
+          "#302c34",
+          "#443f49",
+          "#5a5360",
+          "#6b6370",
+          "#8d8592",
+          "#b5aeb9",
+          "#e0dce3"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Soft Boundary",
+        "canonical": "#d4c8c0",
+        "tonalRamp": [
+          "#2a2522",
+          "#403832",
+          "#574e47",
+          "#70665e",
+          "#8f847b",
+          "#afa59d",
+          "#d4c8c0",
+          "#eee8e3"
+        ]
+      },
+      "brand": {
+        "role": "primary",
+        "displayName": "Grounded Clay",
+        "canonical": "#c4622d",
+        "tonalRamp": [
+          "oklch(18% 0.06 48)",
+          "oklch(28% 0.075 48)",
+          "oklch(38% 0.09 48)",
+          "oklch(50% 0.105 48)",
+          "#c4622d",
+          "oklch(72% 0.08 48)",
+          "oklch(84% 0.045 48)",
+          "oklch(94% 0.02 48)"
+        ]
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Boundary Violet",
+        "canonical": "#6b4e8f",
+        "tonalRamp": [
+          "oklch(18% 0.06 305)",
+          "oklch(28% 0.07 305)",
+          "oklch(38% 0.08 305)",
+          "#6b4e8f",
+          "oklch(58% 0.075 305)",
+          "oklch(72% 0.055 305)",
+          "oklch(84% 0.035 305)",
+          "oklch(94% 0.015 305)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Main orienting statements only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Reflective section-level orientation when the product grows beyond the landing surface."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Explanatory copy, disclaimers, and product language that must stay readable under stress."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, compact UI states, and low-emphasis metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "logo-rest",
+        "value": "drop-shadow-sm",
+        "purpose": "Tiny separation for the centered brand mark only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hero-reveal",
+        "value": "0.65s-0.85s cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Soft entrance for landing elements; must be disabled for reduced motion."
+      },
+      {
+        "name": "ticker-drift",
+        "value": "100s linear infinite",
+        "purpose": "Ambient emotional-state drift with no hierarchy or interaction."
+      },
+      {
+        "name": "state-transition",
+        "value": "300ms ease",
+        "purpose": "Hover color and arrow movement."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Link CTA",
+      "kind": "button",
+      "refersTo": "link-cta",
+      "description": "A low-pressure text action for invitations where agency matters more than conversion pressure.",
+      "html": "<a class=\"ds-link-cta\" href=\"#\">Begin gently <span aria-hidden=\"true\">→</span></a>",
+      "css": ".ds-link-cta { display: inline-flex; align-items: center; gap: 8px; color: var(--brand, #c4622d); border-bottom: 1px solid rgb(196 98 45 / 0.3); padding-bottom: 1px; font-family: var(--font-dm-sans, ui-sans-serif, system-ui, sans-serif); font-size: 14px; text-decoration: none; transition: color 300ms ease, border-color 300ms ease; } .ds-link-cta span { transition: transform 300ms ease; } .ds-link-cta:hover { border-color: rgb(196 98 45 / 0.7); } .ds-link-cta:hover span { transform: translateX(4px); } .ds-link-cta:focus-visible { outline: 2px solid var(--ring, #6b4e8f); outline-offset: 4px; border-radius: 4px; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "status-chip",
+      "description": "A compact informational badge for availability or status without urgency.",
+      "html": "<span class=\"ds-status-chip\">Coming soon</span>",
+      "css": ".ds-status-chip { display: inline-flex; align-items: center; border-radius: 9999px; border: 1px solid rgb(212 200 192 / 0.5); background: var(--muted, #ede8e0); color: var(--muted-foreground, #6b6370); padding: 2px 10px; font-family: var(--font-dm-sans, ui-sans-serif, system-ui, sans-serif); font-size: 12px; font-weight: 500; line-height: 1.35; }"
+    },
+    {
+      "name": "Logo Well",
+      "kind": "custom",
+      "refersTo": "logo-mark",
+      "description": "Small framed brand mark treatment used in the sticky navigation.",
+      "html": "<span class=\"ds-logo-well\" aria-label=\"Magnet Care logo\"><span>✦</span></span>",
+      "css": ".ds-logo-well { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border, #d4c8c0); background: var(--muted, #ede8e0); color: var(--foreground, #1e1b24); transition: transform 200ms ease; } .ds-logo-well span { font-size: 18px; line-height: 1; } .ds-logo-well:hover { transform: scale(1.05); } .ds-logo-well:focus-visible { outline: 2px solid var(--ring, #6b4e8f); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sticky Header",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "A translucent top bar that keeps identity present without adding pressure.",
+      "html": "<nav class=\"ds-header\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-mark\">✦</span><span>Magnet Care</span></a><span class=\"ds-header-chip\">Coming soon</span></nav>",
+      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--border, #d4c8c0); background: rgb(247 244 238 / 0.8); backdrop-filter: blur(12px); padding: 16px 24px; font-family: var(--font-dm-sans, ui-sans-serif, system-ui, sans-serif); } .ds-brand { display: inline-flex; align-items: center; gap: 12px; color: var(--foreground, #1e1b24); font-size: 18px; font-weight: 600; letter-spacing: -0.01em; text-decoration: none; transition: color 200ms ease; } .ds-brand:hover { color: var(--brand, #c4622d); } .ds-brand-mark { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border, #d4c8c0); background: var(--muted, #ede8e0); font-size: 16px; } .ds-header-chip { border-radius: 9999px; border: 1px solid rgb(212 200 192 / 0.5); background: var(--muted, #ede8e0); color: var(--muted-foreground, #6b6370); padding: 2px 10px; font-size: 12px; font-weight: 500; }"
+    },
+    {
+      "name": "Ambient State Ticker",
+      "kind": "custom",
+      "refersTo": "emotional-state-ticker",
+      "description": "Low-contrast emotional language presented without ranking, scoring, or interaction.",
+      "html": "<div class=\"ds-ticker\" aria-hidden=\"true\"><div class=\"ds-ticker-track\"><span>overwhelmed <b>/</b></span><span>not sure yet <b>/</b></span><span>returning <b>/</b></span><span>ready but uncertain <b>/</b></span></div></div>",
+      "css": ".ds-ticker { overflow: hidden; border-top: 1px solid rgb(212 200 192 / 0.4); padding: 20px 0; font-family: var(--font-dm-sans, ui-sans-serif, system-ui, sans-serif); } .ds-ticker-track { display: flex; width: max-content; gap: 0; animation: ds-ticker 100s linear infinite; } .ds-ticker span { display: inline-flex; align-items: center; flex-shrink: 0; padding: 0 16px; color: rgb(107 99 112 / 0.4); font-size: 10px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; } .ds-ticker b { margin-left: 16px; color: rgb(212 200 192 / 0.6); font-weight: 400; } @keyframes ds-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } } @media (prefers-reduced-motion: reduce) { .ds-ticker-track { animation: none; } }"
+    },
+    {
+      "name": "Future Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "A proposed field primitive for later orientation flows, derived from existing tokens.",
+      "html": "<label class=\"ds-field\"><span>What feels hard right now?</span><input placeholder=\"A few words are enough\" /></label>",
+      "css": ".ds-field { display: grid; gap: 8px; color: var(--foreground, #1e1b24); font-family: var(--font-dm-sans, ui-sans-serif, system-ui, sans-serif); font-size: 14px; font-weight: 500; } .ds-field input { width: 100%; border: 1px solid var(--border, #d4c8c0); border-radius: 8px; background: var(--background, #f7f4ee); color: var(--foreground, #1e1b24); padding: 12px 14px; font: inherit; font-weight: 400; } .ds-field input::placeholder { color: var(--muted-foreground, #6b6370); } .ds-field input:focus-visible { outline: 2px solid var(--ring, #6b4e8f); outline-offset: 3px; } .ds-field input:disabled { cursor: not-allowed; opacity: 0.55; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Orientation Room",
+    "overview": "Magnet Care's interface should feel like a calm room where a person can pause before naming what hurts. The system is warm, mature, spacious, and careful: it gives language and direction without implying diagnosis, urgency, or measurement.\n\nThe current surface uses a restrained product palette: warm chalk background, near-black plum text, muted clay as the only primary action color, and a small violet accent for focus and atmospheric depth. The result should feel grounded and human, not therapeutic theater and not wellness marketing.\n\nThis system explicitly rejects diagnostic, clinical, crisis-coded, gamified, marketplace, mystical, childish, neon, hospital-blue, generic wellness, meditation-cliche, and dark crisis-coded patterns. The interface walks beside the user; it never interprets them from above.",
+    "keyCharacteristics": [
+      "Spacious centered composition with very few simultaneous decisions.",
+      "Warm-neutral surfaces with clay and violet used sparingly.",
+      "Serif display type for humane orientation, sans-serif UI type for clarity.",
+      "Gentle motion that reveals presence without creating pressure.",
+      "Plain disclaimers and boundaries always remain visible and direct."
+    ],
+    "rules": [
+      {
+        "name": "The Sparse Accent Rule",
+        "body": "Clay and violet are used as signals, not decoration. If a screen reads orange or purple at first glance, the accent is overused.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Diagnosis Color Rule",
+        "body": "Never use semantic red, green, or yellow to imply a user's state, score, risk, or progress unless the interaction is explicitly operational and non-clinical.",
+        "section": "colors"
+      },
+      {
+        "name": "The Labels Stay Sans Rule",
+        "body": "Display serif is for orientation moments only. Buttons, badges, nav, disclaimers, and product controls stay in DM Sans.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Shouting Rule",
+        "body": "Headlines may be large, but they remain light-weight and balanced. Avoid heavy bold display type, aggressive caps, and compressed line-height.",
+        "section": "typography"
+      },
+      {
+        "name": "The Floor Is Flat Rule",
+        "body": "Surfaces do not float. If a panel needs hierarchy, use spacing, typography, border tone, or muted background before adding shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use Chalk Ground as the dominant page surface and reserve Grounded Clay for the most important human action.",
+      "Do keep immediate-help and boundary language calm, direct, and visible.",
+      "Do use serif display type for orienting statements and DM Sans for all controls and operational UI.",
+      "Do support reduced motion for every animation, including page reveal and ticker movement.",
+      "Do let users leave, pause, return, and proceed without shame-coded language or visual pressure."
+    ],
+    "donts": [
+      "Don't make Magnet look or behave like a diagnostic tool, clinical assessment, crisis service, AI therapist, or therapy replacement.",
+      "Don't use productivity, habit-tracking, streak, badge, level, completion, or accountability product patterns.",
+      "Don't rank therapists by score, availability, scarcity, or \"best match\" certainty.",
+      "Don't create a dense content feed, social network, sprawling wellness library, or SEO content farm.",
+      "Don't use mystical, childish, neon, hospital-blue, generic wellness, meditation-cliche, or dark crisis-coded aesthetics.",
+      "Don't make users feel watched, scored, managed, fixed, rushed, shamed, or forced into deeper disclosure.",
+      "Don't copy product language from unrelated projects or use elevator/lift visualization concepts.",
+      "Don't use glassmorphism, gradient text, heavy shadows, oversized card radii, side-stripe accents, or decorative motion."
+    ]
+  }
+}

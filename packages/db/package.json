@@ -1,0 +1,32 @@
+{
+  "name": "@splashemout/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts"
+  },
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "1.0.0-rc.4",
+    "postgres": "3.4.7"
+  },
+  "devDependencies": {
+    "@splashemout/eslint-config": "workspace:*",
+    "@types/node": "^22.19.19",
+    "dotenv": "^16.4.7",
+    "drizzle-kit": "1.0.0-rc.4",
+    "eslint": "^9.39.4",
+    "tsx": "^4.20.3",
+    "typescript": "5.9.3"
+  }
+}

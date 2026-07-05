@@ -1,0 +1,30 @@
+{
+  "name": "@splashemout/auth",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./server": "./src/server.ts",
+    "./client": "./src/client.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-auth": "^1.2.7",
+    "pg": "^8.13.3",
+    "resend": "^4.0.0"
+  },
+  "devDependencies": {
+    "@splashemout/eslint-config": "workspace:*",
+    "@types/node": "^22.19.19",
+    "@types/pg": "^8.11.10",
+    "eslint": "^9.39.4",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "react": ">=19"
+  }
+}

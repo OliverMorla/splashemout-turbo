@@ -1,0 +1,47 @@
+# Workspace package globs. The repo root is always included by pnpm.
+packages:
+  # Next.js app workspaces.
+  - apps/*
+  # Shared library/config package workspaces.
+  - packages/*
+
+# Explicit dependency build-script approvals for pnpm 10.26+.
+allowBuilds:
+  # Required by packages that rely on core-js postinstall behavior.
+  core-js: true
+  # Required so esbuild can install its native executable.
+  esbuild: true
+  # Required so sharp can install or prepare its native image binary.
+  sharp: true
+
+# Prevent transitive dependencies from resolving from git/tarball URLs unless trusted.
+blockExoticSubdeps: true
+# Reuse a single peer-resolved package instance when peer sets do not conflict.
+dedupePeerDependents: true
+# Fail installs when dependencies are incompatible with the configured Node version.
+engineStrict: true
+# Require package versions to be at least 1 day old before pnpm may install them.
+minimumReleaseAge: 1440
+# Allow packages from registries that omit publish timestamps instead of failing.
+minimumReleaseAgeIgnoreMissingTime: true
+# Use this exact Node version for engine compatibility checks.
+nodeVersion: 22.13.0
+# Legacy build-script allow-list. pnpm 11 replaces this with allowBuilds above.
+onlyBuiltDependencies:
+  - esbuild
+
+# Prefer the highest matching dependency versions during resolution.
+resolutionMode: highest
+# Let workspace packages resolve peer dependencies from the root package.
+resolvePeersFromWorkspaceRoot: true
+# Save exact dependency versions instead of adding ^ or ~ ranges.
+savePrefix: ""
+# Fail installs when dependencies have unreviewed build scripts.
+strictDepBuilds: true
+# trustPolicy: no-downgrade
+# If trustPolicy is enabled, ignore trust checks for releases older than 1 year.
+trustPolicyIgnoreAfter: 525600
+# Before pnpm run/exec, install automatically if dependencies are out of sync.
+verifyDepsBeforeRun: install
+# Verify package contents in pnpm's store before linking them into node_modules.
+verifyStoreIntegrity: true

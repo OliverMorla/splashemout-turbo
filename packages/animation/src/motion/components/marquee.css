@@ -1,0 +1,38 @@
+.splashemout-marquee {
+  --duration: 40s;
+  --gap: 1rem;
+}
+
+.splashemout-marquee-track {
+  animation: splashemout-marquee var(--duration) linear infinite;
+}
+
+.splashemout-marquee-track-vertical {
+  animation: splashemout-marquee-vertical var(--duration) linear infinite;
+}
+
+.splashemout-marquee-reverse {
+  animation-direction: reverse;
+}
+
+.splashemout-marquee:hover .splashemout-marquee-pause {
+  animation-play-state: paused;
+}
+
+@keyframes splashemout-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes splashemout-marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_SITE_URL",
+    "BETTER_AUTH_SECRET",
+    "BETTER_AUTH_URL",
+    "BETTER_AUTH_TRUSTED_ORIGINS",
+    "RESEND_API_KEY",
+    "RESEND_AUDIENCE_ID",
+    "RESEND_FROM_EMAIL",
+    "RESEND_FROM_NAME",
+    "NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN",
+    "NEXT_PUBLIC_POSTHOG_HOST",
+    "POSTHOG_API_KEY",
+    "POSTHOG_PROJECT_ID",
+    "NEXT_PUBLIC_SENTRY_DSN",
+    "SENTRY_AUTH_TOKEN",
+    "SENTRY_ORG",
+    "SENTRY_PROJECT",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_JWT_SECRET",
+    "SUPABASE_DB_URL",
+    "PAYLOAD_SECRET",
+    "PAYLOAD_PUBLIC_SERVER_URL",
+    "PAYLOAD_CONFIG_PATH",
+    "DATABASE_URL",
+    "CLOUDFLARE_R2_ENDPOINT",
+    "CLOUDFLARE_R2_ACCOUNT_ID",
+    "CLOUDFLARE_R2_ACCESS_KEY_ID",
+    "CLOUDFLARE_R2_SECRET_ACCESS_KEY",
+    "CLOUDFLARE_R2_BUCKET",
+    "CLOUDFLARE_R2_PUBLIC_URL",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AWS_REGION",
+    "AWS_S3_BUCKET",
+    "AWS_S3_ENDPOINT",
+    "STRIPE_SECRET_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "STRIPE_PRICE_ID",
+    "STRIPE_CUSTOMER_PORTAL_URL",
+    "STRIPE_SUCCESS_URL",
+    "STRIPE_CANCEL_URL",
+    "INNGEST_EVENT_KEY",
+    "INNGEST_SIGNING_KEY",
+    "AI_PROVIDER",
+    "OPENROUTER_API_KEY",
+    "OPENROUTER_BASE_URL",
+    "OPENROUTER_MODEL",
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY",
+    "PERSONA_API_KEY",
+    "PERSONA_WEBHOOK_SECRET",
+    "PERSONA_TEMPLATE_ID",
+    "WEBFLOW_SITE_ID",
+    "WEBFLOW_API_TOKEN"
+  ],
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
