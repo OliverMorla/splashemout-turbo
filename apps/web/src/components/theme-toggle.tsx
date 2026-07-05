@@ -9,7 +9,7 @@ import {
 import * as m from "@splashemout/animation/motion/react-m";
 
 type ThemeChoice = "light" | "dark" | "system";
-
+ 
 const THEME_SEQUENCE: ThemeChoice[] = ["light", "dark", "system"];
 
 const THEME_META: Record<ThemeChoice, { emoji: string; label: string }> = {
