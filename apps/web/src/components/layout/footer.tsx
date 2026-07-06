@@ -2,6 +2,7 @@ import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUp, Phone } from "lucide-react";
+import { ButtonWave, buttonVariants } from "@splashemout/ui/button";
 import { cn } from "../../../../../packages/utils/src/class-names";
 import { contactInfo, footerLegalNav, primaryNav } from "@/config/nav";
 import { siteConfig } from "@/config/site";
@@ -45,12 +46,12 @@ export function Footer() {
             </a>
             <Link
               href={contactInfo.scheduleHref as Route}
-              className="group relative inline-flex h-11 items-center gap-1.5 overflow-hidden rounded-full bg-footer-accent pr-4 pl-5 text-sm font-semibold text-footer-bg transition-[gap,padding,box-shadow] duration-300 ease-out hover:gap-2.5 hover:pr-5 hover:pl-5 hover:shadow-lg hover:shadow-footer-accent/40 active:scale-95 motion-reduce:transition-colors"
+              className={cn(
+                buttonVariants({ variant: "wave", size: "lg" }),
+                "h-11 gap-1.5 pr-4 pl-5 text-sm font-semibold hover:gap-2.5 hover:pr-5 hover:pl-5",
+              )}
             >
-              <span
-                aria-hidden="true"
-                className="footer-cta-wave pointer-events-none"
-              />
+              <ButtonWave />
               <span className="relative">Schedule pickup</span>
               <ArrowRight
                 className="relative h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"

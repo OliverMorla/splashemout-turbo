@@ -23,6 +23,7 @@ const buttonVariants = cva(
         link: "h-auto rounded-sm border-x-0 border-t-0 border-b-brand/30 px-0 pb-px text-brand hover:border-b-brand/70 hover:text-brand",
         matte:
           "border-foreground bg-foreground text-background hover:bg-foreground/90 hover:border-foreground/90 active:bg-foreground aria-expanded:bg-foreground/90",
+        wave: "group relative isolate overflow-hidden rounded-full border-transparent bg-footer-accent text-footer-bg transition-[gap,padding,box-shadow] duration-300 ease-out hover:shadow-lg hover:shadow-footer-accent/40 active:scale-95 motion-reduce:transition-colors",
       },
       size: {
         default:
@@ -65,4 +66,16 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+// Fill overlay for `variant: "wave"` — a mask-clipped wave rises to fill the
+// button on hover, tying the action back to the brand. Render as the first
+// child alongside the button's label/icon.
+function ButtonWave({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn("footer-cta-wave pointer-events-none", className)}
+    />
+  );
+}
+
+export { Button, buttonVariants, ButtonWave };

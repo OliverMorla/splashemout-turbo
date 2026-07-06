@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowRight, Phone } from "lucide-react";
 import { BlurInViewDiv, BlurP } from "@splashemout/animation/motion/components";
-import { buttonVariants } from "@splashemout/ui/button";
+import { ButtonWave, buttonVariants } from "@splashemout/ui/button";
 import { cn } from "../../../../../packages/utils/src/class-names";
 import { contactInfo } from "@/config/nav";
 
@@ -46,12 +46,16 @@ export function PortholeCta() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  buttonVariants({ variant: "brand", size: "lg" }),
-                  "h-12 justify-center rounded-full px-7 text-base",
+                  buttonVariants({ variant: "wave", size: "lg" }),
+                  "h-12 justify-center gap-1.5 px-7 text-base hover:gap-2.5",
                 )}
               >
-                Schedule pickup
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <ButtonWave />
+                <span className="relative">Schedule pickup</span>
+                <ArrowRight
+                  className="relative h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </a>
               <a
                 href={contactInfo.phoneHref}
