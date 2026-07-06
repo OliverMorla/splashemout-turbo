@@ -94,16 +94,16 @@ body {
 }
 
 .hero-photo-drift {
-  animation: hero-photo-drift 20s ease-out forwards;
+  animation: hero-photo-drift 18s ease-in-out infinite alternate;
 }
 
 @keyframes hero-photo-drift {
   from {
-    transform: scale(1.08);
+    transform: scale(1);
   }
 
   to {
-    transform: scale(1);
+    transform: scale(1.06);
   }
 }
 
