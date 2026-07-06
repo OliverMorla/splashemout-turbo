@@ -68,7 +68,7 @@ export function ThemeToggle({
       disabled={!mounted}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "group relative inline-flex h-8 w-[3.75rem] shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-colors hover:border-brand/30 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-60",
+        "group relative inline-flex h-8 w-[3.75rem] shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-all hover:border-brand/30 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-60",
         className,
       )}
     >

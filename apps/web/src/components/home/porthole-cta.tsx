@@ -11,22 +11,21 @@ export function PortholeCta() {
       <div className="mx-auto w-full max-w-6xl px-6 sm:px-10">
         <BlurInViewDiv
           y={20}
-          className="relative isolate overflow-hidden rounded-3xl"
+          className="relative isolate min-h-[560px] overflow-hidden rounded-3xl sm:min-h-[440px] lg:min-h-[480px]"
         >
           <Image
             src="/images/marketing/cta.webp"
             alt="Folded laundry ready for a Splash 'Em Out pickup order."
-            width={2172}
-            height={724}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
             sizes="(min-width: 1024px) 1100px, 100vw"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[#04070a]/92 via-[#04070a]/55 to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-[#04070a]/92 via-[#04070a]/70 to-[#04070a]/20 sm:bg-gradient-to-r sm:from-[#04070a]/92 sm:via-[#04070a]/55 sm:to-transparent"
             aria-hidden="true"
           />
 
-          <div className="absolute inset-0 flex flex-col justify-center gap-6 px-8 py-14 sm:px-14 sm:py-20 lg:max-w-lg">
+          <div className="absolute inset-0 flex flex-col justify-end gap-5 px-6 py-10 sm:justify-center sm:gap-6 sm:px-14 sm:py-20 lg:max-w-lg">
             <BlurP
               y={10}
               className="font-sans text-xs font-semibold tracking-[0.24em] text-accent uppercase"

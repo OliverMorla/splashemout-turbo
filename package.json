@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:clean": "pkill -f '([n]ext dev|[n]ext start|[r]eact-scripts start|[v]ite( |$)|[t]urbo run dev|[p]npm dev|[n]pm run dev|[y]arn dev)' || true",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "env:secrets": "node scripts/generate-env-secrets.mjs",
