@@ -97,3 +97,9 @@ export const contactInfo = {
   phoneHref: "tel:+18592684330",
   scheduleHref: "/schedule",
 } as const;
+
+export const footerLegalNav: { label: string; href: Route }[] = [
+  { label: "Privacy Policy", href: "/privacy" as Route },
+  { label: "Terms of Service", href: "/terms" as Route },
+  { label: "Accessibility", href: "/accessibility" as Route },
+];

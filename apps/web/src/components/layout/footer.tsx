@@ -1,7 +1,9 @@
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, ArrowUp, Phone } from "lucide-react";
 import { cn } from "../../../../../packages/utils/src/class-names";
-import { primaryNav } from "@/config/nav";
+import { contactInfo, footerLegalNav, primaryNav } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 
 const services = primaryNav.find((item) => item.label === "Services")?.items ?? [];
@@ -15,24 +17,50 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-footer-bg text-footer-fg">
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 pt-16 pb-8 sm:px-10 sm:pt-20">
-        <div className="flex max-w-md flex-col gap-4">
-          <Link href="/" className="flex w-fit items-center gap-2.5">
-            <Image
-              src="/images/brand/logo.webp"
-              alt="Splash 'Em Out"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
-            />
-            <span className="font-serif text-xl">{siteConfig.name}</span>
-          </Link>
-          <p className="text-sm leading-relaxed text-footer-fg/60">
-            Attended laundromats, wash-and-fold, and pickup &amp; delivery
-            across Central Kentucky. Laundry day, handled.
-          </p>
+        <div className="flex flex-col gap-8 border-b border-footer-fg/10 pb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex max-w-md flex-col gap-4">
+            <Link href="/" className="flex w-fit items-center gap-2.5">
+              <Image
+                src="/images/brand/logo.webp"
+                alt="Splash 'Em Out"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+              />
+              <span className="font-serif text-xl">{siteConfig.name}</span>
+            </Link>
+            <p className="text-sm leading-relaxed text-footer-fg/60">
+              Attended laundromats, wash-and-fold, and pickup &amp; delivery
+              across Central Kentucky. Laundry day, handled.
+            </p>
+          </div>
+
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
+            <a
+              href={contactInfo.phoneHref}
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-footer-fg/15 px-5 text-sm font-medium text-footer-fg/85 transition-colors hover:border-footer-accent/40 hover:text-footer-accent"
+            >
+              <Phone className="h-4 w-4" aria-hidden="true" />
+              {contactInfo.phoneDisplay}
+            </a>
+            <Link
+              href={contactInfo.scheduleHref as Route}
+              className="group relative inline-flex h-11 items-center gap-1.5 overflow-hidden rounded-full bg-footer-accent pr-4 pl-5 text-sm font-semibold text-footer-bg transition-[gap,padding,box-shadow] duration-300 ease-out hover:gap-2.5 hover:pr-5 hover:pl-5 hover:shadow-lg hover:shadow-footer-accent/40 active:scale-95 motion-reduce:transition-colors"
+            >
+              <span
+                aria-hidden="true"
+                className="footer-cta-wave pointer-events-none"
+              />
+              <span className="relative">Schedule pickup</span>
+              <ArrowRight
+                className="relative h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 border-t border-footer-fg/10 pt-10 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           <nav aria-label="Services">
             <h2 className="text-xs font-semibold tracking-[0.08em] text-footer-fg/60 uppercase">
               Services
@@ -69,7 +97,25 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="col-span-2 sm:col-span-2">
+          <nav aria-label="Legal">
+            <h2 className="text-xs font-semibold tracking-[0.08em] text-footer-fg/60 uppercase">
+              Legal
+            </h2>
+            <ul className="mt-4 flex flex-col gap-3">
+              {footerLegalNav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-footer-fg/85 transition-colors hover:text-footer-accent"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
             <h2 className="text-xs font-semibold tracking-[0.08em] text-footer-fg/60 uppercase">
               Locally Owned
             </h2>
@@ -84,6 +130,15 @@ export function Footer() {
           <p className="text-xs text-footer-fg/60">
             &copy; {year} {siteConfig.name}. Central Kentucky.
           </p>
+          <a
+            href="#"
+            className="group inline-flex items-center gap-2 text-xs font-medium text-footer-fg/60 transition-colors hover:text-footer-accent"
+          >
+            Back to top
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-footer-fg/15 transition-colors group-hover:border-footer-accent/40">
+              <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          </a>
         </div>
       </div>
 

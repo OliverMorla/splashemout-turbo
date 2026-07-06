@@ -224,6 +224,38 @@ body {
   }
 }
 
+/* Footer "Schedule pickup" CTA — a wave rises to fill the button on hover and
+   drifts sideways like water, tying the action back to the brand. */
+.footer-cta-wave {
+  position: absolute;
+  inset: 0;
+  background-color: var(--footer-bg);
+  opacity: 0.24;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='44' viewBox='0 0 50 44'%3E%3Cpath d='M0 24C12.5 10 37.5 38 50 24L50 44L0 44Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='44' viewBox='0 0 50 44'%3E%3Cpath d='M0 24C12.5 10 37.5 38 50 24L50 44L0 44Z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .footer-cta-wave {
+  transform: translateY(0);
+  animation: footer-cta-wave-drift 2.4s linear infinite;
+}
+
+@keyframes footer-cta-wave-drift {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+
+  to {
+    -webkit-mask-position: -50px 0;
+    mask-position: -50px 0;
+  }
+}
+
 /* Find-your-footing — topographic contour drift. Slow, settling motion only. */
 .mc-contour-drift {
   transform-box: fill-box;
@@ -354,6 +386,10 @@ body {
 
   .hero-photo-drift {
     animation: none;
+  }
+
+  .footer-cta-wave {
+    display: none;
   }
 
   .mc-contour-drift {
