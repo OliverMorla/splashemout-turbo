@@ -25,7 +25,7 @@ export function Hero() {
       />
       <div className="hero-scrim absolute inset-0" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pb-16 pt-32 sm:px-10 sm:pb-20 lg:pb-24">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 pb-16 pt-32 sm:px-10 sm:pb-20 lg:pb-24">
         <BlurDiv delay={0.05} y={10} className="flex items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ticket-paper shadow-md">
             <Image
@@ -41,7 +41,7 @@ export function Hero() {
           </span>
         </BlurDiv>
 
-        <div className="max-w-xl">
+        <div className="max-w-2xl">
           <BlurP
             delay={0.15}
             y={10}
@@ -62,7 +62,7 @@ export function Hero() {
           <BlurP
             delay={0.38}
             y={10}
-            className="mt-6 max-w-md text-base leading-7 text-white/80 sm:text-lg"
+            className="mt-6 max-w-lg text-base leading-7 text-white/80 sm:text-lg"
           >
             A clean local laundry service for wash-and-fold, pickup and
             delivery, dry cleaning pickup, and commercial laundry across
