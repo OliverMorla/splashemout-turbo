@@ -2,7 +2,7 @@
 
 ## Register
 
-local service website
+brand
 
 ## Users
 

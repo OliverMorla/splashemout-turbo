@@ -17,7 +17,6 @@
 - `packages/utils` - Shared utility exports, including class name merging.
 - `scripts` - Root maintenance scripts such as clean install and environment secret generation.
 - `tests` - Test workspace directories exist, but no test files were present when this map was updated.
-- `design-system` - Persisted UI/UX design-system guidance and page overrides.
 
 ## Key Project Notes
 

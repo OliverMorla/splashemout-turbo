@@ -26,7 +26,6 @@ The product should feel bright, clean, local, useful, and conversion-focused. It
 - [docs/ASSETS.md](docs/ASSETS.md): public asset inventory and production asset plan.
 - [TASTE.md](TASTE.md): concise design execution brief for landing-page work.
 - [VIBE.md](VIBE.md): high-level taste and experience guardrails.
-- [HOMEPAGE_BRIEF.md](HOMEPAGE_BRIEF.md): homepage-specific creative brief.
 
 ## Repository
 
