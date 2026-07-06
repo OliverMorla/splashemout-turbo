@@ -1,6 +1,6 @@
 # Splash 'Em Out Routes
 
-This route plan is written for Splash 'Em Out as of July 5, 2026. It prioritizes local search intent, fast service conversion, pricing clarity, location discovery, and commercial quote generation.
+This route plan is written for Splash 'Em Out as of July 6, 2026. It prioritizes local search intent, fast service conversion, pricing clarity, location discovery, commercial quote generation, and a phased path toward replacing the Curbside Laundries customer portal.
 
 ## Priority Key
 
@@ -16,6 +16,8 @@ This route plan is written for Splash 'Em Out as of July 5, 2026. It prioritizes
 - Location pages are high-value SEO and conversion routes. Give each one real local content.
 - Commercial laundry needs its own path because the buyer, proof points, and form are different.
 - Pricing should be visible, not buried.
+- The first-party client portal should replace Curbside Laundries only when it can own the full customer lifecycle: booking, account access, order status, addresses, payment, notifications, support, and cancellation/reschedule rules.
+- Keep public marketing routes crawlable and portal routes authenticated. Do not mix account-only data into public SEO pages.
 - Avoid thin duplicate city pages and service pages that repeat the same paragraph with only the city changed.
 
 ## Public Routes
@@ -91,15 +93,77 @@ Build these only with unique content: local service notes, relevant customer typ
 | `/commercial/uniform-laundry`                |       P2 | Useful later if commercial demand supports it.                                                                       |
 | `/commercial/equine-laundry`                 |       P2 | Kentucky-specific differentiator if operations support it.                                                           |
 
-## Account And External Routes
+## Booking, Account, And External Routes
 
-| Route            | Priority | Why It Matters                                                                                                 |
-| ---------------- | -------: | -------------------------------------------------------------------------------------------------------------- |
-| `/schedule`      |       P0 | Internal redirect or bridge to `https://splashemout.curbsidelaundries.com/`. Keep tracking and fallback copy.  |
-| `/login`         |       P0 | Redirect or bridge to the customer portal at the Curbside Laundries URL.                                       |
-| `/privacy`       |       P0 | Required trust/legal page, especially for forms, analytics, scheduling links, and contact data.                |
-| `/terms`         |       P0 | Required legal page for website use, quotes, pricing accuracy, external portal links, and service limitations. |
-| `/accessibility` |       P1 | Strongly recommended for a public local-service site.                                                          |
+| Route              | Priority | Why It Matters                                                                                                                                         |
+| ------------------ | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/schedule`        |       P0 | Booking entry route. During the bridge phase, redirect or hand off to `https://splashemout.curbsidelaundries.com/` with tracking and fallback copy.    |
+| `/login`           |       P0 | Account entry route. During the bridge phase, redirect to Curbside Laundries. Once replaced, this should lead to the first-party authenticated portal. |
+| `/signup`          |       P1 | Useful when first-party booking is live. Keep optional if booking can create an account at checkout.                                                   |
+| `/forgot-password` |       P1 | Required when first-party auth is live. Not needed while Curbside owns auth.                                                                           |
+| `/privacy`         |       P0 | Required trust/legal page, especially for forms, analytics, scheduling links, accounts, payment data, and contact data.                                |
+| `/terms`           |       P0 | Required legal page for website use, quotes, pricing accuracy, portal usage, payment authorization, cancellation rules, and service limitations.       |
+| `/accessibility`   |       P1 | Strongly recommended for a public local-service site and important for booking/account flows.                                                          |
+
+## First-Party Client Portal Routes
+
+These routes are for replacing Curbside Laundries with a native Splash 'Em Out portal. Build them in phases. Do not expose these as public SEO routes.
+
+| Route                            | Priority | Description                                                                                                                                       |
+| -------------------------------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/account`                       |       P0 | Authenticated customer dashboard with next pickup, active order status, recent orders, primary address, payment status, and support CTA.          |
+| `/account/orders`                |       P0 | Customer order history with status, totals, service type, pickup/drop-off dates, and receipts.                                                    |
+| `/account/orders/[orderId]`      |       P0 | Single order detail route for status timeline, bag count, weight, items, notes, charges, pickup/delivery windows, and support actions.            |
+| `/account/schedule`              |       P0 | Authenticated booking flow for one-time or recurring pickup/delivery. Prefer this over separate public checkout routes once users are signed in.  |
+| `/account/schedule/confirmation` |       P0 | Booking confirmation with order summary, pickup instructions, address, payment method, notification preferences, and reschedule/cancel policy.    |
+| `/account/addresses`             |       P0 | Manage pickup/delivery addresses, access notes, building instructions, and default address. Critical for delivery reliability.                    |
+| `/account/payment-methods`       |       P0 | Manage saved payment methods if Splash 'Em Out charges through the portal. Keep PCI-sensitive handling delegated to the payment provider.         |
+| `/account/profile`               |       P1 | Name, phone, email, password, and basic account settings. Required once first-party auth is live, but lower conversion value than booking/status. |
+| `/account/preferences`           |       P1 | Laundry preferences such as detergent, softener, drying, folding, hang-dry notes, recurring instructions, and notification channels.              |
+| `/account/subscriptions`         |       P1 | Recurring pickup plans or saved schedules. Build only after recurring demand and operations are ready.                                            |
+| `/account/invoices`              |       P1 | Receipts and invoices for residential users. Make P0 for commercial portal users if invoicing is part of the business model.                      |
+| `/account/support`               |       P1 | Authenticated support route tied to order context, missing items, delivery issues, billing questions, and contact history.                        |
+| `/account/notifications`         |       P2 | Notification preferences and history. Useful later, but basic SMS/email preferences can live in `/account/preferences` first.                     |
+
+## Native Booking Flow Routes
+
+Use these if booking is allowed before account creation. If the product requires login first, keep the flow under `/account/schedule` and avoid duplicate booking logic.
+
+| Route                      | Priority | Description                                                                                                                                  |
+| -------------------------- | -------: | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/schedule`                |       P0 | Public booking start: service type, service address or ZIP, availability, and sign-in/create-account prompt.                                 |
+| `/schedule/details`        |       P0 | Pickup details, laundry preferences, notes, contact info, and requested window.                                                              |
+| `/schedule/payment`        |       P0 | Payment authorization or card collection if payment is required before pickup. Skip if the business bills after weighing.                    |
+| `/schedule/review`         |       P0 | Final review before submitting the order. Important for reducing support issues and accidental bookings.                                     |
+| `/schedule/confirmation`   |       P0 | Confirmation page for anonymous or newly created customers. Should encourage account creation if the user is not already authenticated.      |
+| `/schedule/status/[token]` |       P1 | Magic-link status page for customers who booked without an account. Useful bridge route, but avoid long-term duplication with account pages. |
+
+## Commercial Portal Routes
+
+Only build a commercial portal after commercial operations require self-service. Until then, `/commercial/request-a-bid` plus internal follow-up is enough.
+
+| Route                         | Priority | Description                                                                                                                       |
+| ----------------------------- | -------: | --------------------------------------------------------------------------------------------------------------------------------- |
+| `/commercial/request-a-bid`   |       P0 | Lead capture for business laundry. Already part of MVP and should remain separate from residential booking.                       |
+| `/business`                   |       P2 | Authenticated commercial account dashboard for recurring clients, invoices, service schedule, pickup notes, and account contacts. |
+| `/business/orders`            |       P2 | Commercial order history and status. Build when business customers repeatedly ask for visibility.                                 |
+| `/business/invoices`          |       P2 | Commercial invoice and payment route. Promote to P1 if invoicing becomes a major support burden.                                  |
+| `/business/locations`         |       P2 | Manage multiple business pickup locations. Useful for property managers, hotels, restaurants, and multi-site clients.             |
+| `/business/service-agreement` |       P2 | Service terms, agreed pricing, pickup frequency, and operational notes for contracted clients.                                    |
+
+## Internal Operations Routes
+
+These are not CMS routes. They are protected operational routes needed only if Splash 'Em Out owns booking, order management, pickup/delivery, and customer support in the first-party platform.
+
+| Route                   | Priority | Description                                                                                                                               |
+| ----------------------- | -------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `/ops`                  |       P1 | Internal operations dashboard for today's pickups, active orders, exceptions, and workload. Required before fully replacing Curbside ops. |
+| `/ops/orders`           |       P1 | Staff order queue with filters by status, location, pickup route, delivery date, service type, and exception state.                       |
+| `/ops/orders/[orderId]` |       P1 | Staff order detail route for status updates, notes, weights, charges, photos if used, customer messages, and issue resolution.            |
+| `/ops/customers`        |       P1 | Staff customer lookup for support, order history, addresses, and contact information. Must be permission-protected and audited.           |
+| `/ops/routes`           |       P1 | Pickup/delivery route planning and driver assignment. Build when native scheduling starts assigning real pickup windows.                  |
+| `/ops/pricing`          |       P2 | Internal pricing rules and fees. Keep in code or admin config until pricing changes frequently enough to need a UI.                       |
+| `/ops/reports`          |       P2 | Revenue, order volume, route performance, and service metrics. Useful after transaction volume justifies reporting.                       |
 
 ## Admin Routes
 
@@ -145,6 +209,39 @@ Build these first:
 - `/privacy`
 - `/terms`
 
+## First-Party Portal MVP Route Set
+
+Build these when replacing Curbside Laundries becomes the actual implementation goal:
+
+- `/login`
+- `/forgot-password`
+- `/account`
+- `/account/orders`
+- `/account/orders/[orderId]`
+- `/account/schedule`
+- `/account/schedule/confirmation`
+- `/account/addresses`
+- `/account/payment-methods`
+- `/schedule`
+- `/schedule/details`
+- `/schedule/review`
+- `/schedule/confirmation`
+- `/ops`
+- `/ops/orders`
+- `/ops/orders/[orderId]`
+- `/ops/customers`
+- `/ops/routes`
+
+Keep these out of the first portal release unless demand is proven:
+
+- `/account/subscriptions`
+- `/account/notifications`
+- `/business`
+- `/business/orders`
+- `/business/invoices`
+- `/ops/pricing`
+- `/ops/reports`
+
 ## Why These Routes Give Splash 'Em Out The Best Chance
 
 This platform wins by matching urgent local intent with fast action:
@@ -154,7 +251,8 @@ This platform wins by matching urgent local intent with fast action:
 - Location routes capture laundromat near me and directions intent.
 - Service-area routes support pickup/delivery search.
 - Commercial routes separate quote buyers from residential flows.
-- Schedule and login routes preserve the external portal as the conversion path.
+- Schedule and login routes preserve the external portal as the conversion path until the first-party portal can safely own booking and order operations.
+- Account and ops routes become important only when the business is ready to replace Curbside Laundries as the source of truth.
 
 ## External Links
 

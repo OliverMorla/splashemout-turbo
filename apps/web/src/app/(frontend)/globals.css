@@ -40,6 +40,9 @@
   --footer-bg: #e0f2fe;
   --footer-fg: #0c2a3d;
   --footer-accent: #0369a1;
+  --porthole-rim-highlight: rgb(255 255 255 / 0.8);
+  --porthole-rim-shadow: rgb(8 15 23 / 0.88);
+  --porthole-glass-sheen: rgb(255 255 255 / 0.4);
   --body-glow-brand: rgb(196 98 45 / 0.08);
   --body-glow-accent: rgb(107 78 143 / 0.07);
   --hero-orb-border: rgb(196 98 45 / 0.14);
@@ -82,6 +85,9 @@
   --hero-orb-veil: rgb(10 10 10 / 0.28);
   --hero-orb-brand: rgb(224 139 93 / 0.12);
   --hero-orb-accent: rgb(166 138 209 / 0.11);
+  --porthole-rim-highlight: rgb(226 232 240 / 0.5);
+  --porthole-rim-shadow: rgb(0 0 0 / 0.92);
+  --porthole-glass-sheen: rgb(255 255 255 / 0.16);
   --header-glass-bg: rgb(15 23 42 / 0.55);
   --header-glass-border: rgb(255 255 255 / 0.14);
   --header-glass-highlight: rgb(255 255 255 / 0.18);
@@ -372,6 +378,150 @@ body {
 
   100% {
     transform: scaleX(1);
+  }
+}
+
+/* Variant 1 — The Load Path homepage. A single route-line motif carries the
+   pickup story from hero to final CTA: porch, wash, fold, return. Reuses the
+   stroke-dasharray draw technique from .settling-line/.mc-threshold-path so
+   every drawn line on the site shares one animation vocabulary. */
+.load-path-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: load-path-draw 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.load-path-line[data-trigger="view"] {
+  animation-play-state: paused;
+}
+
+.load-path-line[data-trigger="view"][data-in-view="true"] {
+  animation-play-state: running;
+}
+
+@keyframes load-path-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.load-path-dot {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    fill 0.4s ease;
+}
+
+.load-path-dot[data-active="true"] {
+  transform: scale(1.35);
+}
+
+/* Claim-tag chip — a small dashed-edge label styled like the laundry ticket
+   stub in the hero, used for proof points and "best for" callouts instead of
+   generic pill badges. */
+.claim-tag {
+  background: var(--ticket-paper);
+  color: var(--ticket-ink);
+  border: 1px dashed var(--ticket-line);
+}
+
+/* Receipt panel — perforated top/bottom edge for the pricing snapshot,
+   echoing a printed laundry receipt rather than a generic pricing card. */
+.receipt-panel {
+  position: relative;
+  background: var(--background);
+  border: 1px solid var(--border);
+}
+
+.receipt-panel::before,
+.receipt-panel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--background) 2.5px,
+    transparent 2.6px
+  );
+  background-size: 16px 10px;
+  background-repeat: repeat-x;
+}
+
+.receipt-panel::before {
+  top: -5px;
+}
+
+.receipt-panel::after {
+  bottom: -5px;
+  transform: rotate(180deg);
+}
+
+/* Porthole video frame — a front-loader's porthole door frames a looping
+   hero-style video, used to give a section a "control panel" feel rather
+   than a stock media block. */
+.porthole-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 200deg,
+    var(--porthole-rim-shadow),
+    var(--porthole-rim-highlight) 16%,
+    var(--porthole-rim-shadow) 38%,
+    var(--porthole-rim-highlight) 60%,
+    var(--porthole-rim-shadow) 82%,
+    var(--porthole-rim-highlight) 100%
+  );
+  box-shadow: 0 42px 90px -32px rgb(9 14 20 / 0.65);
+  animation: porthole-ring-spin 46s linear infinite;
+  will-change: transform;
+}
+
+@keyframes porthole-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.porthole-inner {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: #04070a;
+  box-shadow:
+    0 0 0 6px rgb(15 23 42 / 0.5) inset,
+    0 0 46px rgb(0 0 0 / 0.6) inset;
+}
+
+.porthole-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 30% 22%,
+    var(--porthole-glass-sheen) 0%,
+    rgb(255 255 255 / 0.05) 24%,
+    transparent 50%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .porthole-ring {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .load-path-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .load-path-dot[data-active="true"] {
+    transform: none;
   }
 }
 
