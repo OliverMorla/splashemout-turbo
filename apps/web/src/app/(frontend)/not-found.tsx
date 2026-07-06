@@ -1,4 +1,3 @@
-import type { Route } from "next";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -14,12 +13,12 @@ export default function NotFound() {
             Coming soon
           </p>
           <h1 className="mt-5 max-w-3xl font-serif text-5xl font-light leading-none tracking-normal text-foreground sm:text-6xl lg:text-7xl">
-            This room is still being prepared.
+            This page is still being prepared.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-            Some parts of Splash 'Em Out are intentionally opening in stages. This page
-            is not available yet, but you can return to the orientation space or
-            find immediate support if you need it.
+            Some parts of Splash &apos;Em Out are intentionally opening in
+            stages. This page is not available yet, but you can return home for
+            pickup, delivery, wash-and-fold, and commercial laundry updates.
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -28,12 +27,6 @@ export default function NotFound() {
               className="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-6 text-sm font-semibold text-background transition hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             >
               Return home
-            </Link>
-            <Link
-              href={"/immediate-help" as Route}
-              className="inline-flex h-12 items-center justify-center rounded-full border border-brand/25 bg-brand/5 px-6 text-sm font-semibold text-brand transition hover:bg-brand/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            >
-              Immediate help
             </Link>
           </div>
         </div>
@@ -44,12 +37,12 @@ export default function NotFound() {
           </p>
           <div className="mt-6 space-y-5 text-sm leading-7 text-muted-foreground">
             <p>
-              No score, no dead end. Just a quiet marker that this part is not
-              ready for visitors yet.
+              Our full site is coming soon. For now, this route is not ready for
+              visitors.
             </p>
             <p className="border-t border-border/60 pt-5 text-foreground/80">
-              If you arrived here from the menu, that pathway is planned but not
-              open.
+              If you arrived here from a link, that page is planned but not
+              published yet.
             </p>
           </div>
         </aside>

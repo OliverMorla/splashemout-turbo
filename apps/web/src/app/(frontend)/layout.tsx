@@ -4,7 +4,6 @@ import { LazyMotionProvider } from "@splashemout/animation/motion/provider";
 import { ThemeProvider } from "@splashemout/ui/theme-provider";
 import { siteConfig } from "@/config/site";
 import { PostHogProvider } from "@/components/posthog-provider";
-import { FrontendChrome } from "@/components/frontend-chrome";
 import "./globals.css";
 
 const siteName = siteConfig.name;
@@ -12,10 +11,10 @@ const title = "Splash 'Em Out | Coming Soon";
 const description =
   "Splash 'Em Out is a clean local laundry service coming soon to Central Kentucky.";
 const ogImage = {
-  url: "/images/brand/logo.webp",
-  width: 512,
-  height: 512,
-  alt: "Splash 'Em Out",
+  url: "/images/brand/og.webp",
+  width: 1731,
+  height: 909,
+  alt: "Splash 'Em Out pickup, delivery, wash, and fold",
 };
 
 const fraunces = Fraunces({
@@ -120,9 +119,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider>
           <LazyMotionProvider>
-            <PostHogProvider>
-              <FrontendChrome>{children}</FrontendChrome>
-            </PostHogProvider>
+            <PostHogProvider>{children}</PostHogProvider>
           </LazyMotionProvider>
         </ThemeProvider>
       </body>

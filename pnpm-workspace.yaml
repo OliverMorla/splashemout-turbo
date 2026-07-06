@@ -5,6 +5,12 @@ packages:
   # Shared library/config package workspaces.
   - packages/*
 
+# Add missing dependency metadata for third-party packages.
+packageExtensions:
+  "@payloadcms/drizzle@3.85.1":
+    dependencies:
+      drizzle-kit: 0.31.7
+
 # Explicit dependency build-script approvals for pnpm 10.26+.
 allowBuilds:
   # Required by packages that rely on core-js postinstall behavior.

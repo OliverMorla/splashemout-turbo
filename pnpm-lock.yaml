@@ -4,6 +4,8 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+packageExtensionsChecksum: sha256-yQqDueZCeJAqFyjbZvBcgOzbbWjpgGF82nvfoYiR87k=
+
 importers:
 
   .:
@@ -6160,6 +6162,7 @@ snapshots:
     dependencies:
       console-table-printer: 2.12.1
       dequal: 2.0.3
+      drizzle-kit: 0.31.7
       drizzle-orm: 0.45.2(@types/pg@8.20.0)(kysely@0.29.2)(pg@8.20.0)(postgres@3.4.7)
       payload: 3.85.1(graphql@16.14.2)(typescript@5.9.3)
       prompts: 2.4.2
@@ -6195,6 +6198,7 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+      - supports-color
 
   '@payloadcms/graphql@3.85.1(graphql@16.14.2)(payload@3.85.1(graphql@16.14.2)(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:

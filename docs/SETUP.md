@@ -239,42 +239,42 @@ Splash ‘Em Out offers dry cleaning service in Lexington, KY and surrounding ar
 
 ### Wash & Fold
 
-| Service | Price | Minimum |
-|---|---:|---:|
-| Drop-Off Wash & Fold, Next-Day | $1.69/lb | $15 |
-| Pickup & Delivery, Recurring | $2.09/lb | $30 |
-| Pickup & Delivery, As Needed | $2.39/lb | $30 |
+| Service                        |    Price | Minimum |
+| ------------------------------ | -------: | ------: |
+| Drop-Off Wash & Fold, Next-Day | $1.69/lb |     $15 |
+| Pickup & Delivery, Recurring   | $2.09/lb |     $30 |
+| Pickup & Delivery, As Needed   | $2.39/lb |     $30 |
 
 ### Individually Priced Items
 
-| Category | Item | Price |
-|---|---|---:|
-| Comforters | King Comforter | $25 |
-| Comforters | Queen Comforter | $20 |
-| Comforters | Full/Twin Comforter | $16 |
-| Down Comforters | King Down Comforter | $30 |
-| Down Comforters | Queen Down Comforter | $25 |
-| Down Comforters | Full/Twin Down Comforter | $20 |
-| Mattress Pads | King Mattress Pad | $20 |
-| Mattress Pads | Queen Mattress Pad | $15 |
-| Mattress Pads | Full/Twin Mattress Pad | $12 |
-| Pillows | Small Pillow | $10 |
-| Pillows | Feather Pillow | $20 |
-| Blankets | King Blanket | $21 |
-| Blankets | Queen Blanket | $18 |
-| Blankets | Full/Twin Blanket | $15 |
-| Horse Blankets | Large Horse Blanket | $20 |
-| Horse Blankets | Medium Horse Blanket | $18 |
-| Horse Blankets | Small Horse Blanket | $16 |
-| Rugs | Large/Medium Rug | $12.50 |
-| Rugs | Small Rug | $10 |
-| Rugs | Rug Runner | $15 |
-| Hoodies & Jackets | Hoodie | $5 |
-| Hoodies & Jackets | Heavy Jacket | $10 |
-| Hoodies & Jackets | Light Jacket | $7 |
-| Pet Beds | Large Pet Bed | $20 |
-| Pet Beds | Medium Pet Bed | $15 |
-| Pet Beds | Small Pet Bed | $12.50 |
+| Category          | Item                     |  Price |
+| ----------------- | ------------------------ | -----: |
+| Comforters        | King Comforter           |    $25 |
+| Comforters        | Queen Comforter          |    $20 |
+| Comforters        | Full/Twin Comforter      |    $16 |
+| Down Comforters   | King Down Comforter      |    $30 |
+| Down Comforters   | Queen Down Comforter     |    $25 |
+| Down Comforters   | Full/Twin Down Comforter |    $20 |
+| Mattress Pads     | King Mattress Pad        |    $20 |
+| Mattress Pads     | Queen Mattress Pad       |    $15 |
+| Mattress Pads     | Full/Twin Mattress Pad   |    $12 |
+| Pillows           | Small Pillow             |    $10 |
+| Pillows           | Feather Pillow           |    $20 |
+| Blankets          | King Blanket             |    $21 |
+| Blankets          | Queen Blanket            |    $18 |
+| Blankets          | Full/Twin Blanket        |    $15 |
+| Horse Blankets    | Large Horse Blanket      |    $20 |
+| Horse Blankets    | Medium Horse Blanket     |    $18 |
+| Horse Blankets    | Small Horse Blanket      |    $16 |
+| Rugs              | Large/Medium Rug         | $12.50 |
+| Rugs              | Small Rug                |    $10 |
+| Rugs              | Rug Runner               |    $15 |
+| Hoodies & Jackets | Hoodie                   |     $5 |
+| Hoodies & Jackets | Heavy Jacket             |    $10 |
+| Hoodies & Jackets | Light Jacket             |     $7 |
+| Pet Beds          | Large Pet Bed            |    $20 |
+| Pet Beds          | Medium Pet Bed           |    $15 |
+| Pet Beds          | Small Pet Bed            | $12.50 |
 
 ### Commercial Pricing
 
@@ -307,17 +307,17 @@ Military customers, active or non-active, and first responders receive 10% off w
 
 The site lists the following laundromat locations.
 
-| Location | Address | Phone | Hours |
-|---|---|---|---|
-| Versailles Road | 1202 Versailles Rd, Lexington, KY 40508 | 859-303-7777 | 8am–10pm |
-| Red House Road | 908 Red House Rd, Richmond, KY 40475 | 859-575-1048 | 8am–9pm |
-| Edgewood Drive | 200 Edgewood Dr, Nicholasville, KY 40356 | 859-241-1542 | 7am–10pm |
-| Eastern Bypass | 469 Eastern Bypass, Richmond, KY 40475 | 859-575-4276 | 8am–11pm |
-| E. New Circle Road | 160 E New Circle Rd, Lexington, KY 40505 | 859-309-1560 | 8am–11pm |
-| Pimlico Pwy | 3120 Pimlico Pkwy Ste 178, Lexington, KY 40517 | 859-523-1110 | Mon–Fri 8am–11pm; Sat–Sun 7am–11pm |
-| Bryan Station Road | 1788 Bryan Station Rd, Lexington, KY 40505 | 859-299-7558 | 8am–10pm |
-| Waller Avenue | 393 Waller Ave #13, Lexington, KY 40504 | 859-368-9019 | 8am–10pm / FAQ shows 8am–9:30pm |
-| E. Reynolds Road | 125 E Reynolds Rd, Lexington, KY 40517 | 859-407-3653 | 8am–11pm / FAQ shows 8am–10pm |
+| Location           | Address                                        | Phone        | Hours                              |
+| ------------------ | ---------------------------------------------- | ------------ | ---------------------------------- |
+| Versailles Road    | 1202 Versailles Rd, Lexington, KY 40508        | 859-303-7777 | 8am–10pm                           |
+| Red House Road     | 908 Red House Rd, Richmond, KY 40475           | 859-575-1048 | 8am–9pm                            |
+| Edgewood Drive     | 200 Edgewood Dr, Nicholasville, KY 40356       | 859-241-1542 | 7am–10pm                           |
+| Eastern Bypass     | 469 Eastern Bypass, Richmond, KY 40475         | 859-575-4276 | 8am–11pm                           |
+| E. New Circle Road | 160 E New Circle Rd, Lexington, KY 40505       | 859-309-1560 | 8am–11pm                           |
+| Pimlico Pwy        | 3120 Pimlico Pkwy Ste 178, Lexington, KY 40517 | 859-523-1110 | Mon–Fri 8am–11pm; Sat–Sun 7am–11pm |
+| Bryan Station Road | 1788 Bryan Station Rd, Lexington, KY 40505     | 859-299-7558 | 8am–10pm                           |
+| Waller Avenue      | 393 Waller Ave #13, Lexington, KY 40504        | 859-368-9019 | 8am–10pm / FAQ shows 8am–9:30pm    |
+| E. Reynolds Road   | 125 E Reynolds Rd, Lexington, KY 40517         | 859-407-3653 | 8am–11pm / FAQ shows 8am–10pm      |
 
 > Note: Some hours differ slightly between the Locations and FAQ pages. Verify final hours directly with the client before launch.
 
@@ -347,7 +347,7 @@ The navigation and service-area pages indicate service coverage in and around:
 **Main phone:** 859-268-4330  
 **Email:** splashemoutlaundry@gmail.com  
 **Schedule pickup:** https://splashemout.curbsidelaundries.com/  
-**Customer login:** https://splashemout.curbsidelaundries.com/  
+**Customer login:** https://splashemout.curbsidelaundries.com/
 
 ### Location Phone Numbers
 

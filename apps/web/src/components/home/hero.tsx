@@ -2,11 +2,19 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { BlurDiv, BlurH1, BlurP } from "@splashemout/animation/motion/components";
+import {
+  BlurDiv,
+  BlurH1,
+  BlurP,
+} from "@splashemout/animation/motion/components";
 import { useReducedMotion } from "@splashemout/animation/motion/react";
 import { cn } from "../../../../../packages/utils/src/class-names";
 
-const SERVICES = ["Self-service laundry", "Pickup & delivery", "Commercial laundry"];
+const SERVICES = [
+  "Self-service laundry",
+  "Pickup & delivery",
+  "Commercial laundry",
+];
 
 const HERO_PHOTOS = ["/media/images/hero.webp", "/media/images/hero-2.webp"];
 const SLIDE_INTERVAL_MS = 7000;
@@ -86,8 +94,8 @@ export function Hero() {
             className="mt-6 max-w-lg text-base leading-7 text-white/80 sm:text-lg"
           >
             A clean local laundry service for wash-and-fold, pickup and
-            delivery, dry cleaning pickup, and commercial laundry across
-            Central Kentucky.
+            delivery, dry cleaning pickup, and commercial laundry across Central
+            Kentucky.
           </BlurP>
         </div>
 

@@ -1,17 +1,27 @@
 # Public Assets
 
-Inventory and asset plan for files under `apps/web/public`. Paths are shown as Next.js public URLs, so `apps/web/public/images/brand/logo.webp` would be referenced as `/images/brand/logo.webp`.
+Inventory and asset plan for public-facing web assets. Paths under `apps/web/public` are shown as Next.js public URLs, so `apps/web/public/images/brand/logo.webp` would be referenced as `/images/brand/logo.webp`. App Router metadata files under `apps/web/src/app` are listed by their served URL.
 
-As of this update, the repo contains the production-facing brand logo, two pickup/delivery hero images, and one hero video. Do not document copied placeholder images as real Splash 'Em Out assets. Add rows here as real brand, location, service, and SEO assets are created or received.
+As of this update, the repo contains the production-facing brand logo, two Open Graph images, a manifest icon set, two pickup/delivery hero images, and one hero video. Do not document copied placeholder images as real Splash 'Em Out assets. Add rows here as real brand, location, service, and SEO assets are created or received.
 
 ## Current Assets
 
-| Public URL                  | Source path                                | Type       | Specs                           | Recommended use                                                                                                                                            |
-| --------------------------- | ------------------------------------------ | ---------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/images/brand/logo.webp`   | `apps/web/public/images/brand/logo.webp`   | Brand logo | WebP with alpha, 279x189, 16 KB | Header, footer, metadata fallbacks, and brand lockups where a raster logo is acceptable. Keep transparent background intact.                               |
-| `/media/images/hero.webp`   | `apps/web/public/media/images/hero.webp`   | Hero image | WebP, 1916x821, 92 KB           | Homepage or pickup/delivery hero with laundry bag and folded towels on a residential porch. Useful when copy needs open sky/negative space on the left.    |
-| `/media/images/hero-2.webp` | `apps/web/public/media/images/hero-2.webp` | Hero image | WebP, 1916x821, 140 KB          | Alternate pickup/delivery hero with folded towels, laundry bags, and delivery van in a neighborhood setting. Useful for service pages or A/B hero testing. |
-| `/media/video/hero-c.mp4`   | `apps/web/public/media/video/hero-c.mp4`   | Hero video | MP4, 5.5 MB                     | Optional homepage or service hero motion asset. Use muted/autoplay/loop only where performance budget allows; consider further compression for mobile.     |
+| Public URL                             | Source path                                           | Type             | Specs                             | Recommended use                                                                                                                                            |
+| -------------------------------------- | ----------------------------------------------------- | ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/images/brand/logo.webp`              | `apps/web/public/images/brand/logo.webp`              | Brand logo       | WebP with alpha, 1254x1254, 88 KB | Header, footer, metadata fallbacks, and brand lockups where a raster logo is acceptable. Keep transparent background intact.                               |
+| `/images/brand/og.webp`                | `apps/web/public/images/brand/og.webp`                | Open Graph image | WebP, 1731x909, 103 KB            | Primary social preview for pickup, delivery, wash-and-fold, and coming-soon pages.                                                                         |
+| `/images/brand/og-2.webp`              | `apps/web/public/images/brand/og-2.webp`              | Open Graph image | WebP, 1731x909, 100 KB            | Alternate social preview or campaign image for laundry-day messaging.                                                                                      |
+| `/manifest/android-chrome-192x192.png` | `apps/web/public/manifest/android-chrome-192x192.png` | Manifest icon    | PNG with alpha, 192x192, 49 KB    | Android Chrome and PWA icon.                                                                                                                               |
+| `/manifest/android-chrome-512x512.png` | `apps/web/public/manifest/android-chrome-512x512.png` | Manifest icon    | PNG with alpha, 512x512, 223 KB   | High-resolution Android Chrome and install icon.                                                                                                           |
+| `/manifest/apple-touch-icon.png`       | `apps/web/public/manifest/apple-touch-icon.png`       | Apple touch icon | PNG with alpha, 180x180, 43 KB    | iOS home-screen icon.                                                                                                                                      |
+| `/manifest/favicon-16x16.png`          | `apps/web/public/manifest/favicon-16x16.png`          | Favicon          | PNG with alpha, 16x16, 855 bytes  | Browser favicon fallback.                                                                                                                                  |
+| `/manifest/favicon-32x32.png`          | `apps/web/public/manifest/favicon-32x32.png`          | Favicon          | PNG with alpha, 32x32, 2 KB       | Browser favicon fallback.                                                                                                                                  |
+| `/manifest/favicon.ico`                | `apps/web/public/manifest/favicon.ico`                | Favicon          | ICO, 16x16 and 32x32, 15 KB       | Legacy browser favicon.                                                                                                                                    |
+| `/manifest/site.webmanifest`           | `apps/web/public/manifest/site.webmanifest`           | Web manifest     | JSON, 406 bytes                   | PWA and install metadata. Icon `src` values should stay aligned with the `/manifest` folder location.                                                      |
+| `/favicon.ico`                         | `apps/web/src/app/favicon.ico`                        | App favicon      | ICO, 16x16 and 32x32, 15 KB       | Next.js App Router favicon served from the app metadata file convention.                                                                                   |
+| `/media/images/hero.webp`              | `apps/web/public/media/images/hero.webp`              | Hero image       | WebP, 1916x821, 91 KB             | Homepage or pickup/delivery hero with laundry bag and folded towels on a residential porch. Useful when copy needs open sky/negative space on the left.    |
+| `/media/images/hero-2.webp`            | `apps/web/public/media/images/hero-2.webp`            | Hero image       | WebP, 1916x821, 139 KB            | Alternate pickup/delivery hero with folded towels, laundry bags, and delivery van in a neighborhood setting. Useful for service pages or A/B hero testing. |
+| `/media/video/hero-c.mp4`              | `apps/web/public/media/video/hero-c.mp4`              | Hero video       | MP4, 5.5 MB                       | Optional homepage or service hero motion asset. Use muted/autoplay/loop only where performance budget allows; consider further compression for mobile.     |
 
 ## Expected Folder Structure
 
@@ -27,18 +37,16 @@ As of this update, the repo contains the production-facing brand logo, two picku
 
 ## Priority Asset Needs
 
-| Asset                                | Priority | Recommended specs                    | Recommended use                                                                         |
-| ------------------------------------ | -------: | ------------------------------------ | --------------------------------------------------------------------------------------- |
-| Brand logo on transparent background |       P0 | SVG preferred, WebP/PNG fallback     | Header, footer, metadata, location pages.                                               |
-| Square icon mark                     |       P0 | SVG plus 512x512 PNG                 | Favicons, manifest icons, compact mobile UI.                                            |
-| Open Graph image                     |       P0 | 1200x630 WebP/PNG                    | Social previews and metadata. Include brand, service promise, and Central Kentucky cue. |
-| Homepage hero image                  |       P0 | 1920x1080 WebP or AVIF               | First viewport. Prefer real clean facility, attendant, folded order, or pickup bag.     |
-| Location exterior photos             |       P0 | 1600px wide minimum                  | Each location page and locations hub.                                                   |
-| Machine/interior photos              |       P0 | 1600px wide minimum                  | Self-service laundry page and trust sections.                                           |
-| Wash-and-fold process photos         |       P0 | 1600px wide minimum                  | Wash-and-fold and pickup/delivery pages.                                                |
-| Commercial laundry photos            |       P1 | 1600px wide minimum                  | Commercial hub and industry pages.                                                      |
-| Promo image for free laundry bag     |       P1 | 1200x800 WebP/AVIF                   | Pickup and delivery page, promo blocks.                                                 |
-| Short ambient facility/process video |       P2 | 8-15s, muted, under 4 MB if possible | Optional hero or service process background.                                            |
+| Asset                                | Priority | Recommended specs                    | Recommended use                                                                     |
+| ------------------------------------ | -------: | ------------------------------------ | ----------------------------------------------------------------------------------- |
+| Brand logo SVG                       |       P0 | SVG preferred                        | Header, footer, metadata, location pages, and sharp scaling across breakpoints.     |
+| Homepage hero image                  |       P0 | 1920x1080 WebP or AVIF               | First viewport. Prefer real clean facility, attendant, folded order, or pickup bag. |
+| Location exterior photos             |       P0 | 1600px wide minimum                  | Each location page and locations hub.                                               |
+| Machine/interior photos              |       P0 | 1600px wide minimum                  | Self-service laundry page and trust sections.                                       |
+| Wash-and-fold process photos         |       P0 | 1600px wide minimum                  | Wash-and-fold and pickup/delivery pages.                                            |
+| Commercial laundry photos            |       P1 | 1600px wide minimum                  | Commercial hub and industry pages.                                                  |
+| Promo image for free laundry bag     |       P1 | 1200x800 WebP/AVIF                   | Pickup and delivery page, promo blocks.                                             |
+| Short ambient facility/process video |       P2 | 8-15s, muted, under 4 MB if possible | Optional hero or service process background.                                        |
 
 ## Imagery Direction
 
@@ -61,10 +69,10 @@ Avoid:
 
 ## App Components
 
-| Component | Source path                          | Export   | Description                                                                                                                                          |
-| --------- | ------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Header`  | `apps/web/src/components/header.tsx` | `Header` | Site header. Currently copied from the previous project and should be updated to Splash 'Em Out navigation and CTAs before launch.                   |
-| `Footer`  | `apps/web/src/components/footer.tsx` | `Footer` | Site footer. Currently copied from the previous project and should be updated with locations, services, phone, email, legal links, and schedule CTA. |
+| Component         | Source path                                    | Export            | Description                                                                                                |
+| ----------------- | ---------------------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| `Hero`            | `apps/web/src/components/home/hero.tsx`        | `Hero`            | Homepage coming-soon hero with rotating pickup/delivery imagery and direct service signals.                |
+| `PostHogProvider` | `apps/web/src/components/posthog-provider.tsx` | `PostHogProvider` | Client analytics provider and pageview tracker. Keep server-only environment values out of this component. |
 
 ## Shared UI Package
 
