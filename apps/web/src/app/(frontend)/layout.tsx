@@ -3,6 +3,7 @@ import { Fraunces, DM_Sans } from "next/font/google";
 import { LazyMotionProvider } from "@splashemout/animation/motion/provider";
 import { ThemeProvider } from "@splashemout/ui/theme-provider";
 import { siteConfig } from "@/config/site";
+import { Header } from "@/components/layout/header";
 import { PostHogProvider } from "@/components/posthog-provider";
 import "./globals.css";
 
@@ -119,7 +120,10 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider>
           <LazyMotionProvider>
-            <PostHogProvider>{children}</PostHogProvider>
+            <PostHogProvider>
+              <Header />
+              {children}
+            </PostHogProvider>
           </LazyMotionProvider>
         </ThemeProvider>
       </body>
