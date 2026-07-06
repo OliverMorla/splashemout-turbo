@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { buttonVariants } from "@splashemout/ui/button";
+import { ThemeToggle } from "@splashemout/ui/theme-toggle";
 import { cn } from "../../../../../packages/utils/src/class-names";
-import { contactInfo, primaryNav, type NavLink } from "@/config/nav";
+import { primaryNav, type NavLink } from "@/config/nav";
 
 function ServiceLink({ item }: { item: NavLink }) {
   const Icon = item.icon;
@@ -43,7 +44,7 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
-      <div className="glass-header mx-auto max-w-7xl rounded-2xl">
+      <div className="glass-header mx-auto max-w-7xl rounded-2xl backdrop-blur-xs">
         <div className="flex items-center justify-between gap-3 px-3 py-2 sm:px-5 sm:py-2.5">
           <Link
             href="/"
@@ -122,23 +123,7 @@ export function Header() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
-            <a
-              href={contactInfo.phoneHref}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "hidden sm:inline-flex",
-              )}
-              aria-label={`Call ${contactInfo.phoneDisplay}`}
-            >
-              <Phone className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <a
-              href={contactInfo.scheduleHref}
-              className={cn(buttonVariants({ variant: "brand", size: "sm" }))}
-            >
-              <span className="hidden sm:inline">Schedule Pickup</span>
-              <span className="sm:hidden">Schedule</span>
-            </a>
+            <ThemeToggle className="hidden sm:inline-flex" />
             <button
               type="button"
               aria-expanded={mobileOpen}
@@ -187,13 +172,9 @@ export function Header() {
                   ) : null}
                 </div>
               ))}
-              <a
-                href={contactInfo.phoneHref}
-                className="mt-2 flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm font-semibold text-brand"
-              >
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {contactInfo.phoneDisplay}
-              </a>
+              <div className="mt-2 flex items-center justify-end gap-2 px-2.5">
+                <ThemeToggle label="Toggle theme" />
+              </div>
             </nav>
           </div>
         </div>

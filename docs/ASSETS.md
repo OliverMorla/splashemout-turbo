@@ -22,6 +22,7 @@ As of this update, the repo contains the production-facing brand logo, two Open 
 | `/media/images/hero.webp`              | `apps/web/public/media/images/hero.webp`              | Hero image       | WebP, 1916x821, 91 KB             | Homepage or pickup/delivery hero with laundry bag and folded towels on a residential porch. Useful when copy needs open sky/negative space on the left.    |
 | `/media/images/hero-2.webp`            | `apps/web/public/media/images/hero-2.webp`            | Hero image       | WebP, 1916x821, 139 KB            | Alternate pickup/delivery hero with folded towels, laundry bags, and delivery van in a neighborhood setting. Useful for service pages or A/B hero testing. |
 | `/media/video/hero-c.mp4`              | `apps/web/public/media/video/hero-c.mp4`              | Hero video       | MP4, 5.5 MB                       | Optional homepage or service hero motion asset. Use muted/autoplay/loop only where performance budget allows; consider further compression for mobile.     |
+| `/images/marketing/cta.webp`           | `apps/web/public/images/marketing/cta.webp`           | CTA image        | WebP, 2172x724, 80 KB             | Wide-format callout image for a schedule pickup or wash-and-fold CTA band.                                                                                   |
 
 ## Expected Folder Structure
 

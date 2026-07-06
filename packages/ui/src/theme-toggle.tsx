@@ -3,6 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { cn } from "../../utils/src/class-names";
 
 type ThemeOrientation = "icon" | "dropdown";
 type ThemeValue = "light" | "dark" | "system";
@@ -13,16 +14,15 @@ type ThemeToggleProps = Readonly<{
   label?: string;
 }>;
 
-function cn(...values: Array<string | undefined>) {
-  return values.filter(Boolean).join(" ");
-}
-
 const themes: Array<{ label: string; value: ThemeValue }> = [
   { label: "System", value: "system" },
   { label: "Light", value: "light" },
   { label: "Dark", value: "dark" },
 ];
 
+// The dial mirrors a washer cycle knob: a two-stop track (Rinse / Night
+// Rinse) with a solid indicator that settles at whichever stop is active,
+// rather than a generic sun/moon pill switch.
 export function ThemeToggle({
   className,
   orientation = "icon",
@@ -35,52 +35,17 @@ export function ThemeToggle({
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    if (orientation === "dropdown") {
-      return (
-        <select
-          aria-label={label}
-          className={cn(
-            "rounded-md border border-black/10 bg-transparent px-3 py-2 text-sm",
-            className,
-          )}
-          defaultValue="system"
-          disabled
-        >
-          {themes.map((item) => (
-            <option key={item.value} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-      );
-    }
-
-    return (
-      <button
-        type="button"
-        aria-label={label}
-        className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-transparent",
-          className,
-        )}
-        disabled
-      >
-        <Sun className="h-4 w-4" />
-      </button>
-    );
-  }
-
   if (orientation === "dropdown") {
     return (
       <select
         aria-label={label}
         className={cn(
-          "rounded-md border border-black/10 bg-transparent px-3 py-2 text-sm",
+          "rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
           className,
         )}
+        disabled={!mounted}
         onChange={(event) => setTheme(event.target.value as ThemeValue)}
-        value={(theme as ThemeValue | undefined) ?? "system"}
+        value={mounted ? ((theme as ThemeValue | undefined) ?? "system") : "system"}
       >
         {themes.map((item) => (
           <option key={item.value} value={item.value}>
@@ -91,22 +56,38 @@ export function ThemeToggle({
     );
   }
 
-  const isDark = resolvedTheme === "dark";
-  const Icon = isDark ? Sun : Moon;
-  const nextTheme: ThemeValue = isDark ? "light" : "dark";
+  const isDark = mounted ? resolvedTheme === "dark" : false;
   const buttonLabel = isDark ? "Switch to light theme" : "Switch to dark theme";
 
   return (
     <button
       type="button"
+      role="switch"
+      aria-checked={isDark}
       aria-label={buttonLabel}
+      disabled={!mounted}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-transparent transition-colors hover:bg-black/5",
+        "group relative inline-flex h-8 w-[3.75rem] shrink-0 items-center rounded-full border border-border bg-muted p-1 transition-colors hover:border-brand/30 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-60",
         className,
       )}
-      onClick={() => setTheme(nextTheme)}
     >
-      <Icon className="h-4 w-4" />
+      <span className="relative z-0 flex h-6 w-6 items-center justify-center">
+        <Sun className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+      </span>
+      <span className="relative z-0 flex h-6 w-6 items-center justify-center">
+        <Moon className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+      </span>
+
+      <span
+        aria-hidden="true"
+        className={cn(
+          "absolute top-1 left-1 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-brand-solid text-background shadow-[0_1px_0_0_rgb(255_255_255_/_0.35)_inset,0_6px_10px_-4px_rgb(7_23_36_/_0.45)] transition-transform duration-300 ease-out",
+          isDark && "translate-x-[1.75rem]",
+        )}
+      >
+        {isDark ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
+      </span>
     </button>
   );
 }

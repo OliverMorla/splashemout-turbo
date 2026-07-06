@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { DM_Sans, Zilla_Slab } from "next/font/google";
 import Link from "next/link";
 import "./(frontend)/globals.css";
 
-const fraunces = Fraunces({
+const displayFont = Zilla_Slab({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -25,7 +26,7 @@ export default function GlobalNotFound() {
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${fraunces.variable} ${dmSans.variable}`}
+      className={`h-full antialiased ${displayFont.variable} ${dmSans.variable}`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <main className="relative isolate flex min-h-screen w-full flex-1 items-center overflow-hidden px-6 py-20 sm:px-10 lg:px-12">

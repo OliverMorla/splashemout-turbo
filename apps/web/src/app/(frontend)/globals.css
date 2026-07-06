@@ -13,6 +13,9 @@
   --color-brand-solid: var(--brand-solid);
   --color-accent: var(--accent);
   --color-promo: var(--promo);
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-fg: var(--footer-fg);
+  --color-footer-accent: var(--footer-accent);
   --color-hero-scrim-strong: var(--hero-scrim-strong);
   --color-hero-scrim-mid: var(--hero-scrim-mid);
   --color-hero-scrim-clear: var(--hero-scrim-clear);
@@ -20,7 +23,7 @@
   --font-sans:
     var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
 }
 
 :root {
@@ -34,6 +37,9 @@
   --brand-solid: #075985;
   --accent: #14b8a6;
   --promo: #f59e0b;
+  --footer-bg: #e0f2fe;
+  --footer-fg: #0c2a3d;
+  --footer-accent: #0369a1;
   --body-glow-brand: rgb(196 98 45 / 0.08);
   --body-glow-accent: rgb(107 78 143 / 0.07);
   --hero-orb-border: rgb(196 98 45 / 0.14);
@@ -66,6 +72,9 @@
   --brand-solid: #38bdf8;
   --accent: #2dd4bf;
   --promo: #fbbf24;
+  --footer-bg: #071120;
+  --footer-fg: #f8fafc;
+  --footer-accent: #7dd3fc;
   --body-glow-brand: rgb(224 139 93 / 0.12);
   --body-glow-accent: rgb(166 138 209 / 0.13);
   --hero-orb-border: rgb(224 139 93 / 0.18);

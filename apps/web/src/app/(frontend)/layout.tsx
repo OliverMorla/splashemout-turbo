@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Zilla_Slab, DM_Sans } from "next/font/google";
 import { LazyMotionProvider } from "@splashemout/animation/motion/provider";
 import { ThemeProvider } from "@splashemout/ui/theme-provider";
 import { siteConfig } from "@/config/site";
 import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
 import { PostHogProvider } from "@/components/posthog-provider";
 import "./globals.css";
 
 const siteName = siteConfig.name;
-const title = "Splash 'Em Out | Coming Soon";
+const title = "Splash 'Em Out | Central Kentucky Laundry Service";
 const description =
-  "Splash 'Em Out is a clean local laundry service coming soon to Central Kentucky.";
+  "Attended laundromats, wash-and-fold, pickup & delivery, and commercial laundry service in Lexington, Richmond & Nicholasville, KY.";
 const ogImage = {
   url: "/images/brand/og.webp",
   width: 1731,
@@ -18,9 +19,10 @@ const ogImage = {
   alt: "Splash 'Em Out pickup, delivery, wash, and fold",
 };
 
-const fraunces = Fraunces({
+const displayFont = Zilla_Slab({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -115,7 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full antialiased ${fraunces.variable} ${dmSans.variable}`}
+      className={`h-full antialiased ${displayFont.variable} ${dmSans.variable}`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <ThemeProvider>
@@ -123,6 +125,7 @@ export default function RootLayout({
             <PostHogProvider>
               <Header />
               {children}
+              <Footer />
             </PostHogProvider>
           </LazyMotionProvider>
         </ThemeProvider>

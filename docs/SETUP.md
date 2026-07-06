@@ -349,6 +349,12 @@ The navigation and service-area pages indicate service coverage in and around:
 **Schedule pickup:** https://splashemout.curbsidelaundries.com/  
 **Customer login:** https://splashemout.curbsidelaundries.com/
 
+### Social Media
+
+- YouTube: https://www.youtube.com/channel/UCWGlS1G_TGNv3FphKyrm3Tw
+- Instagram: https://www.instagram.com/splashemoutinsta/
+- Facebook: https://www.facebook.com/SplashEmOut/
+
 ### Location Phone Numbers
 
 - E. Reynolds Road: 859-407-3653
