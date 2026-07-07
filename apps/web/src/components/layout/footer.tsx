@@ -7,17 +7,21 @@ import { cn } from "../../../../../packages/utils/src/class-names";
 import { contactInfo, footerLegalNav, primaryNav } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 
-const services = primaryNav.find((item) => item.label === "Services")?.items ?? [];
+const services =
+  primaryNav.find((item) => item.label === "Services")?.items ?? [];
 const company = [
   ...primaryNav.filter((item) =>
     ["Locations", "Pricing", "Commercial", "Contact"].includes(item.label),
   ),
-  {
-    label: "Funnels",
-    href: "/funnels" as Route,
-    description: "Prototype landing page variants.",
-  },
 ];
+
+// Temporary client-review link — surfaces every demo build in one place.
+// Remove once the revamp is finalized and this comparison page is retired.
+const tableOfContentLink = {
+  label: "Table of Contents",
+  href: "/table-of-content" as Route,
+  description: "Every demo build, for client review.",
+};
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -102,6 +106,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li key={tableOfContentLink.href}>
+                <Link
+                  href={tableOfContentLink.href}
+                  className="text-sm text-footer-fg/85 transition-colors hover:text-footer-accent"
+                >
+                  {tableOfContentLink.label}
+                </Link>
+              </li>
             </ul>
           </nav>
 
