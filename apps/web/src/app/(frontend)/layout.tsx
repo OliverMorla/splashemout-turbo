@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PostHogProvider } from "@/components/posthog-provider";
+import { AiChatWidget } from "@/components/chat/ai-chat-widget";
 import "./globals.css";
 
 const siteName = siteConfig.name;
@@ -126,6 +127,7 @@ export default function RootLayout({
               <Header />
               {children}
               <Footer />
+              <AiChatWidget />
             </PostHogProvider>
           </LazyMotionProvider>
         </ThemeProvider>

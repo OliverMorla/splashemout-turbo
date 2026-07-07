@@ -27,6 +27,13 @@
   --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
   --font-v3-display: var(--font-v3-display), "Bricolage Grotesque", sans-serif;
   --font-v3-body: var(--font-v3-body), "Manrope", sans-serif;
+  --font-v5-display: var(--font-v5-display), "Fraunces", serif;
+  --font-v5-body: var(--font-v5-body), "Work Sans", sans-serif;
+  --color-v5-paper: var(--v5-paper);
+  --color-v5-ink: var(--v5-ink);
+  --color-v5-green: var(--v5-green);
+  --color-v5-amber: var(--v5-amber);
+  --color-v5-line: var(--v5-line);
 }
 
 :root {
@@ -66,6 +73,11 @@
   --header-panel-bg: rgb(255 255 255 / 0.82);
   --header-panel-border: rgb(255 255 255 / 0.6);
   --danger: #dc2626;
+  --v5-paper: #f6efe1;
+  --v5-ink: #1e2a1e;
+  --v5-green: #35563b;
+  --v5-amber: #d98b3f;
+  --v5-line: #e4d8be;
 }
 
 .dark {
@@ -160,6 +172,18 @@ body {
       var(--hero-scrim-clear) 70%
     ),
     linear-gradient(to top, var(--hero-scrim-strong) 0%, var(--hero-scrim-clear) 42%);
+}
+
+/* Variant 5 hero scrim — left-to-right so copy sitting on the left edge of
+   a full-bleed video stays legible, reusing the same scrim tokens as the
+   diagonal `.hero-scrim` used elsewhere. */
+.v5-hero-scrim {
+  background: linear-gradient(
+    to right,
+    var(--hero-scrim-strong) 0%,
+    var(--hero-scrim-mid) 45%,
+    var(--hero-scrim-clear) 78%
+  );
 }
 
 .hero-photo-drift {
@@ -691,4 +715,11 @@ body {
   );
   background-size: 16px 100%;
   background-repeat: repeat-x;
+}
+
+/* AI chat widget — pinned bottom-right, offset for iOS/Android safe-area
+   insets so the launcher never sits under a home-indicator bar. */
+.chat-widget-offset {
+  right: max(1rem, calc(env(safe-area-inset-right) + 0.75rem));
+  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.75rem));
 }

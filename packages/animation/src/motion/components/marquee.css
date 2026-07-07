@@ -36,3 +36,10 @@
     transform: translateY(calc(-100% - var(--gap)));
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .splashemout-marquee-track,
+  .splashemout-marquee-track-vertical {
+    animation: none;
+  }
+}
