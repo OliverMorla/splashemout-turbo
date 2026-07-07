@@ -86,7 +86,10 @@ export function AuthScreen() {
         </div>
       </section>
 
-      <div className="claim-seam relative hidden w-6 lg:block" aria-hidden="true">
+      <div
+        className="claim-seam relative hidden w-6 lg:block"
+        aria-hidden="true"
+      >
         <div className="claim-seam-tag absolute top-1/2 left-1/2 w-24 -translate-x-1/2 -translate-y-1/2 -rotate-3 rounded-sm px-2 py-2.5 text-center">
           <p className="font-sans text-[0.6rem] font-bold tracking-[0.18em] uppercase">
             {TODAY_LABEL.format(new Date())}
@@ -149,7 +152,6 @@ export function AuthScreen() {
               <CredentialsForm
                 mode={step}
                 onSignedIn={goToAccount}
-                onNeedsTwoFactor={() => setStep("two-factor")}
                 onForgotPassword={() => setStep("forgot-password")}
                 onSwitchMode={setStep}
               />
@@ -183,7 +185,10 @@ export function AuthScreen() {
 
           <p className="mt-8 text-center text-xs text-muted-foreground">
             Trouble signing in? Call{" "}
-            <a href="tel:+18592684330" className="font-medium text-foreground hover:underline">
+            <a
+              href="tel:+18592684330"
+              className="font-medium text-foreground hover:underline"
+            >
               859-268-4330
             </a>
             {" · "}

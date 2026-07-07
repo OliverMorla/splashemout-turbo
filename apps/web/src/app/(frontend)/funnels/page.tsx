@@ -4,7 +4,8 @@ import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Funnels",
-  description: "Internal review of homepage funnel prototypes for Splash 'Em Out.",
+  description:
+    "Internal review of homepage funnel prototypes for Splash 'Em Out.",
   robots: { index: false, follow: false },
 };
 
@@ -41,6 +42,14 @@ const funnels = [
       "An editorial, state-of-the-art take on the brand — italic serif headlines, teal glass, and a porthole video reel of the wash cycle.",
     signature: "Editorial glass",
   },
+  {
+    id: "05",
+    slug: "variant-5",
+    name: "On the Route",
+    concept:
+      "A single full-bleed hero moment — rubber-stamped route badge, warm serif headline, and the pickup van in motion, with nothing else competing for attention.",
+    signature: "Route stamp hero",
+  },
 ] as const;
 
 export default function FunnelsPage() {
@@ -55,11 +64,11 @@ export default function FunnelsPage() {
             Funnels
           </h1>
           <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground">
-            Four homepage builds, four different bets on how someone books a
+            Five homepage builds, five different bets on how someone books a
             pickup. Pull a ticket to open the full page.
           </p>
 
-          <ol className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <ol className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {funnels.map((f) => (
               <li key={f.slug}>
                 <Link

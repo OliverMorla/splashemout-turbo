@@ -3,7 +3,11 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight, MapPin, Truck } from "lucide-react";
-import { BlurDiv, BlurH1, BlurP } from "@splashemout/animation/motion/components";
+import {
+  BlurDiv,
+  BlurH1,
+  BlurP,
+} from "@splashemout/animation/motion/components";
 import { buttonVariants } from "@splashemout/ui/button";
 import { cn } from "../../../../../packages/utils/src/class-names";
 
@@ -25,8 +29,8 @@ export function HeroSection() {
   return (
     <section className="relative h-screen h-dvh w-full">
       <video
-        src="/media/video/hero-2-c.mp4"
-        poster="/media/images/hero-2.webp"
+        src="/media/video/hero-c.mp4"
+        poster="/media/images/hero.webp"
         autoPlay
         loop
         muted
@@ -57,8 +61,8 @@ export function HeroSection() {
             className="mt-6 max-w-md text-base leading-relaxed text-white/85 md:text-lg"
           >
             Pickup and delivery for Central Kentucky, plus drop-off wash &amp;
-            fold, attended self-service laundromats, and commercial accounts
-            for the businesses that keep this town running.
+            fold, attended self-service laundromats, and commercial accounts for
+            the businesses that keep this town running.
           </BlurP>
 
           <BlurDiv

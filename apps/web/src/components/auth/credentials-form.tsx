@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { signIn, signUp } from "@splashemout/auth/client";
+import { signUp } from "@splashemout/auth/client";
 import { Button } from "@splashemout/ui/button";
 import { Input } from "@splashemout/ui/input";
 import { Label } from "@splashemout/ui/label";
@@ -11,28 +11,14 @@ import { CycleSpinner } from "./cycle-spinner";
 
 type Mode = "sign-in" | "sign-up";
 
-// better-auth's two-factor plugin patches the sign-in/email response at
-// runtime with `twoFactorRedirect`, but the client's inferred type doesn't
-// carry that plugin field, so we narrow it explicitly instead of casting.
-function needsTwoFactor(data: unknown): boolean {
-  return (
-    !!data &&
-    typeof data === "object" &&
-    "twoFactorRedirect" in data &&
-    (data as { twoFactorRedirect?: unknown }).twoFactorRedirect === true
-  );
-}
-
 export function CredentialsForm({
   mode,
   onSignedIn,
-  onNeedsTwoFactor,
   onForgotPassword,
   onSwitchMode,
 }: {
   mode: Mode;
   onSignedIn: () => void;
-  onNeedsTwoFactor: () => void;
   onForgotPassword: () => void;
   onSwitchMode: (mode: Mode) => void;
 }) {
@@ -51,6 +37,13 @@ export function CredentialsForm({
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
+
+    // Demo mode: sign-in always succeeds and goes straight to /account,
+    // regardless of what's entered — there's no real auth backing this yet.
+    if (!isSignUp) {
+      onSignedIn();
+      return;
+    }
 
     if (isSignUp && password.length < 8) {
       setError("Password must be at least 8 characters.");
@@ -84,33 +77,7 @@ export function CredentialsForm({
       }
 
       onSignedIn();
-      return;
     }
-
-    const { data, error: signInError } = await signIn.email({
-      email,
-      password,
-      rememberMe,
-    });
-
-    setLoading(false);
-
-    if (signInError) {
-      setError(
-        getAuthErrorMessage(
-          signInError,
-          "That email and password don't match.",
-        ),
-      );
-      return;
-    }
-
-    if (needsTwoFactor(data)) {
-      onNeedsTwoFactor();
-      return;
-    }
-
-    onSignedIn();
   }
 
   return (
@@ -190,9 +157,7 @@ export function CredentialsForm({
 
       {isSignUp ? (
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor={`${formId}-confirm-password`}>
-            Confirm password
-          </Label>
+          <Label htmlFor={`${formId}-confirm-password`}>Confirm password</Label>
           <Input
             id={`${formId}-confirm-password`}
             name="confirmPassword"

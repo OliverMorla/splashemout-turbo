@@ -5,6 +5,7 @@ import { CareCycle } from "@/components/home/care-cycle";
 import { CarePriceTag } from "@/components/home/care-price-tag";
 import { CareLocations } from "@/components/home/care-locations";
 import { CareCommercial } from "@/components/home/care-commercial";
+import { CareTestimonials } from "@/components/home/care-testimonials";
 import { CareFinalCta } from "@/components/home/care-final-cta";
 import { StickyActionBar } from "@/components/home/sticky-action-bar";
 
@@ -30,6 +31,7 @@ export default function VariantTwo() {
         <CarePriceTag />
         <CareLocations />
         <CareCommercial />
+        <CareTestimonials />
         <CareFinalCta />
       </main>
       <StickyActionBar />
