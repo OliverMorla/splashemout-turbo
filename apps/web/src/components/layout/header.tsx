@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import type { Route } from "next";
+import { ChevronDown, Menu, User, X } from "lucide-react";
+import { useSession } from "@splashemout/auth/client";
 import { buttonVariants } from "@splashemout/ui/button";
 import { ThemeToggle } from "@splashemout/ui/theme-toggle";
 import { cn } from "../../../../../packages/utils/src/class-names";
@@ -33,6 +35,9 @@ function ServiceLink({ item }: { item: NavLink }) {
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { data: session } = useSession();
+  const accountHref = (session ? "/account" : "/login") as Route;
+  const accountLabel = session ? "Account" : "Sign in";
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -123,6 +128,16 @@ export function Header() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-2">
+            <Link
+              href={accountHref}
+              className={cn(
+                buttonVariants({ variant: "outline", size: "sm" }),
+                "hidden sm:inline-flex",
+              )}
+            >
+              <User aria-hidden="true" />
+              {accountLabel}
+            </Link>
             <ThemeToggle className="hidden sm:inline-flex" />
             <button
               type="button"
@@ -172,7 +187,15 @@ export function Header() {
                   ) : null}
                 </div>
               ))}
-              <div className="mt-2 flex items-center justify-end gap-2 px-2.5">
+              <div className="mt-2 flex items-center justify-between gap-2 px-2.5">
+                <Link
+                  href={accountHref}
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+                >
+                  <User aria-hidden="true" />
+                  {accountLabel}
+                </Link>
                 <ThemeToggle label="Toggle theme" />
               </div>
             </nav>

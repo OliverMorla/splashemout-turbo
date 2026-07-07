@@ -20,6 +20,7 @@
   --color-hero-scrim-mid: var(--hero-scrim-mid);
   --color-hero-scrim-clear: var(--hero-scrim-clear);
   --color-ticket-paper: var(--ticket-paper);
+  --color-danger: var(--danger);
   --font-sans:
     var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -64,6 +65,7 @@
   --header-glass-shadow: rgb(15 23 42 / 0.1);
   --header-panel-bg: rgb(255 255 255 / 0.82);
   --header-panel-border: rgb(255 255 255 / 0.6);
+  --danger: #dc2626;
 }
 
 .dark {
@@ -96,6 +98,7 @@
   --header-glass-shadow: rgb(0 0 0 / 0.35);
   --header-panel-bg: rgb(15 23 42 / 0.86);
   --header-panel-border: rgb(255 255 255 / 0.1);
+  --danger: #f87171;
 }
 
 * {
@@ -629,4 +632,63 @@ body {
   .board-status-dot {
     animation: none;
   }
+}
+
+/* Login — The Claim Seam. The screen splits like a torn claim ticket: the
+   video half is the part you keep, the form half is the stub you present
+   to get in. The perforation is the literal hinge of that idea, not a
+   decorative divider, so it only appears where the two halves meet. */
+.claim-seam {
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--border) 1.5px,
+    transparent 1.6px
+  );
+  background-size: 100% 16px;
+  background-repeat: repeat-y;
+}
+
+.claim-seam-tag {
+  background: var(--ticket-paper);
+  color: var(--ticket-ink);
+  box-shadow: 0 14px 28px -14px rgb(9 14 20 / 0.5);
+}
+
+/* Wash-cycle spinner for auth submit states — four ticks instead of a
+   generic ring, echoing a machine's cycle dial without illustrating one. */
+.cycle-spin {
+  animation: cycle-spin 0.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes cycle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Account — The Claim Stub. The next-pickup card carries the login screen's
+   claim-ticket idea one step further: it's the stub you hold once you've
+   claimed your account. Same dot-perforation technique as `.claim-seam`,
+   run along the top edge instead of the full-height divider. This is the
+   dashboard's one signature flourish — every other card stays plain. */
+.claim-stub {
+  position: relative;
+  background: var(--ticket-paper);
+  color: var(--ticket-ink);
+}
+
+.claim-stub::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--ticket-line) 1.5px,
+    transparent 1.6px
+  );
+  background-size: 16px 100%;
+  background-repeat: repeat-x;
 }
