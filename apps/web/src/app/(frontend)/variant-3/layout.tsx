@@ -1,19 +1,22 @@
-import { Space_Mono, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Manrope } from "next/font/google";
+import type { Metadata } from "next";
 
-// Scoped to /variant-3 only — the shared root layout still sets the
-// site-wide Zilla Slab + DM Sans variables for the header and footer.
-const spaceMono = Space_Mono({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "700"],
   variable: "--font-v3-display",
   display: "swap",
 });
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-v3-body",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: "Splash 'Em Out | Redefined",
+  description: "A new standard for laundry in Central Kentucky.",
+};
 
 export default function VariantThreeLayout({
   children,
@@ -21,7 +24,7 @@ export default function VariantThreeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`board-scope ${spaceMono.variable} ${inter.variable}`}>
+    <div className={`v3-scope ${bricolage.variable} ${manrope.variable} font-v3-body bg-[#F4F7F6] text-[#001A23] min-h-screen selection:bg-[#00E5FF] selection:text-[#001A23]`}>
       {children}
     </div>
   );

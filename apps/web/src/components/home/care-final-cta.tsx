@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight, Phone } from "lucide-react";
@@ -10,6 +11,18 @@ import { CareSymbol } from "./care-symbols";
 export function CareFinalCta() {
   return (
     <section className="relative isolate overflow-hidden bg-brand-solid">
+      <Image
+        src="/images/marketing/cta.webp"
+        alt="Folded laundry ready for a Splash 'Em Out pickup order."
+        fill
+        className="object-cover"
+        sizes="100vw"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-brand-solid/95 via-brand-solid/80 to-brand-solid/60"
+        aria-hidden="true"
+      />
+
       {/* care-symbol watermark — the cycle closed */}
       <CareSymbol
         name="fold"
