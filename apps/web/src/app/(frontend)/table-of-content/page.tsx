@@ -20,7 +20,7 @@ type Entry = {
   baseline?: boolean;
 };
 
-const entries: Entry[] = [
+const homepageConcepts: Entry[] = [
   {
     id: "00",
     name: "Live Site",
@@ -86,6 +86,57 @@ const entries: Entry[] = [
     concept:
       "A single full-bleed hero moment — rubber-stamped route badge, warm serif headline, and the pickup van in motion, with nothing else competing for attention.",
     href: "/variant-5",
+  },
+];
+
+const accountAndUtility: Entry[] = [
+  {
+    id: "08",
+    name: "Schedule",
+    tag: "Booking flow",
+    concept:
+      "The real pickup-scheduling flow every hero and CTA across the site points to.",
+    href: "/schedule",
+  },
+  {
+    id: "09",
+    name: "Log In",
+    tag: "Claim-ticket split",
+    concept:
+      "The screen splits like a torn claim ticket — video on one side, the sign-in form as the stub you present to get in.",
+    href: "/login",
+  },
+  {
+    id: "10",
+    name: "Account",
+    tag: "Claim stub",
+    concept:
+      "The signed-in dashboard, carrying the claim-ticket idea forward into a next-pickup stub and account details.",
+    href: "/account",
+  },
+  {
+    id: "11",
+    name: "Accessibility",
+    tag: "Policy page",
+    concept:
+      "The accessibility commitment and the path for reporting barriers.",
+    href: "/accessibility",
+  },
+  {
+    id: "12",
+    name: "Privacy",
+    tag: "Policy page",
+    concept:
+      "How pickup, delivery, and account data is collected, used, and stored.",
+    href: "/privacy",
+  },
+  {
+    id: "13",
+    name: "Terms",
+    tag: "Policy page",
+    concept:
+      "The terms governing pickup, delivery, wash-and-fold, and account use.",
+    href: "/terms",
   },
 ];
 
@@ -159,9 +210,9 @@ function EntryCard({ entry }: { entry: Entry }) {
         </span>
       </div>
       <div>
-        <h2 className="font-serif text-2xl text-foreground italic">
+        <h3 className="font-serif text-2xl text-foreground italic">
           {entry.name}
-        </h2>
+        </h3>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {entry.concept}
         </p>
@@ -196,6 +247,28 @@ function EntryCard({ entry }: { entry: Entry }) {
   );
 }
 
+function EntryLine({ entries }: { entries: Entry[] }) {
+  return (
+    <ol className="grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+      {entries.map((entry, i) => (
+        <li
+          key={entry.href}
+          className={cn(
+            "flex flex-col items-center transition-transform duration-500 ease-out hover:-translate-y-1 hover:rotate-0",
+            ROTATIONS[i % ROTATIONS.length],
+          )}
+        >
+          <Clothespin
+            className={entry.baseline ? "text-muted-foreground" : "text-brand"}
+          />
+          <span className="h-5 w-px bg-border" aria-hidden="true" />
+          <EntryCard entry={entry} />
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export default function TableOfContentPage() {
   return (
     <main className="flex flex-1 flex-col bg-background">
@@ -208,30 +281,24 @@ export default function TableOfContentPage() {
             The Line
           </h1>
           <p className="mt-8 max-w-2xl text-base leading-8 text-muted-foreground">
-            Every build of the Splash &apos;Em Out revamp, hung up side by side.
+            Every route in the Splash &apos;Em Out revamp, hung up side by side.
             Pull a tag to open the full page, and start from the live site on
             the far left to see exactly what each one replaces.
           </p>
 
-          <ol className="mt-20 grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
-            {entries.map((entry, i) => (
-              <li
-                key={entry.href}
-                className={cn(
-                  "flex flex-col items-center transition-transform duration-500 ease-out hover:-translate-y-1 hover:rotate-0",
-                  ROTATIONS[i % ROTATIONS.length],
-                )}
-              >
-                <Clothespin
-                  className={
-                    entry.baseline ? "text-muted-foreground" : "text-brand"
-                  }
-                />
-                <span className="h-5 w-px bg-border" aria-hidden="true" />
-                <EntryCard entry={entry} />
-              </li>
-            ))}
-          </ol>
+          <h2 className="mt-20 font-serif text-xl text-foreground italic">
+            Homepage Concepts
+          </h2>
+          <div className="mt-14">
+            <EntryLine entries={homepageConcepts} />
+          </div>
+
+          <h2 className="mt-24 font-serif text-xl text-foreground italic">
+            Account &amp; Utility Pages
+          </h2>
+          <div className="mt-14">
+            <EntryLine entries={accountAndUtility} />
+          </div>
         </div>
       </section>
     </main>
