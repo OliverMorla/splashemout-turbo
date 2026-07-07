@@ -16,13 +16,18 @@ import {
   Truck,
   type LucideIcon,
 } from "lucide-react";
-import { signOut, useSession } from "@splashemout/auth/client";
 import { Button, buttonVariants } from "@splashemout/ui/button";
 import { cn } from "../../../../../packages/utils/src/class-names";
 import { contactInfo } from "@/config/nav";
 import { EmptyStateCard } from "./empty-state-card";
 
 const SUPPORT_EMAIL = "splashemoutlaundry@gmail.com";
+
+// Demo account page: renders with a fake user so it's browsable without auth.
+const DEMO_USER = {
+  name: "Jordan Casey",
+  email: "jordan.casey@example.com",
+};
 
 const QUICK_ACTIONS: {
   label: string;
@@ -58,14 +63,11 @@ const QUICK_ACTIONS: {
 
 export function AccountScreen() {
   const router = useRouter();
-  const { data: session, isPending } = useSession();
-  const user = session?.user;
-  const firstName = user?.name?.trim().split(/\s+/)[0] || null;
+  const user = DEMO_USER;
+  const firstName = user.name.trim().split(/\s+/)[0];
 
-  async function handleSignOut() {
-    await signOut();
+  function handleSignOut() {
     router.push("/login");
-    router.refresh();
   }
 
   return (
@@ -84,32 +86,23 @@ export function AccountScreen() {
           </span>
         </Link>
 
-        {isPending ? null : user ? (
-          <div className="flex items-center gap-3">
-            <div className="text-right">
-              <p className="text-sm font-semibold text-foreground">
-                {user.name}
-              </p>
-              <p className="text-xs text-muted-foreground">{user.email}</p>
-            </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              onClick={handleSignOut}
-            >
-              <LogOut aria-hidden="true" />
-              Sign out
-            </Button>
+        <div className="flex items-center gap-3">
+          <div className="text-right">
+            <p className="text-sm font-semibold text-foreground">
+              {user.name}
+            </p>
+            <p className="text-xs text-muted-foreground">{user.email}</p>
           </div>
-        ) : (
-          <Link
-            href="/login"
-            className={cn(buttonVariants({ variant: "brand", size: "sm" }))}
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={handleSignOut}
           >
-            Sign in
-          </Link>
-        )}
+            <LogOut aria-hidden="true" />
+            Sign out
+          </Button>
+        </div>
       </header>
 
       <div className="mb-8">
@@ -117,18 +110,8 @@ export function AccountScreen() {
           Central KY account
         </p>
         <h1 className="font-serif text-3xl text-foreground sm:text-4xl">
-          {isPending
-            ? "Loading your account…"
-            : user
-              ? `Welcome back, ${firstName}.`
-              : "You're not signed in."}
+          {`Welcome back, ${firstName}.`}
         </h1>
-        {!isPending && !user ? (
-          <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-            Sign in to see your next pickup, recent orders, and account
-            details.
-          </p>
-        ) : null}
       </div>
 
       {/* The claim stub: the dashboard's one signature element, continuing
@@ -140,9 +123,8 @@ export function AccountScreen() {
               Next pickup
             </p>
             <p className="mt-2 text-base leading-6">
-              {user
-                ? "No pickup scheduled yet. Book one and it'll show up here with your pickup window."
-                : "Sign in to see your next pickup and its status."}
+              No pickup scheduled yet. Book one and it&apos;ll show up here
+              with your pickup window.
             </p>
           </div>
           <span
