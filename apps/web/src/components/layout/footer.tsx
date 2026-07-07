@@ -8,9 +8,16 @@ import { contactInfo, footerLegalNav, primaryNav } from "@/config/nav";
 import { siteConfig } from "@/config/site";
 
 const services = primaryNav.find((item) => item.label === "Services")?.items ?? [];
-const company = primaryNav.filter((item) =>
-  ["Locations", "Pricing", "Commercial", "Contact"].includes(item.label),
-);
+const company = [
+  ...primaryNav.filter((item) =>
+    ["Locations", "Pricing", "Commercial", "Contact"].includes(item.label),
+  ),
+  {
+    label: "Funnels",
+    href: "/funnels" as Route,
+    description: "Prototype landing page variants.",
+  },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();

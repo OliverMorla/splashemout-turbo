@@ -2,7 +2,6 @@ import { HeroSection } from "@/components/variant-3/hero-section";
 import { ServicesSection } from "@/components/variant-3/services-section";
 import { ProofSection } from "@/components/variant-3/proof-section";
 import { CommercialSection } from "@/components/variant-3/commercial-section";
-import { FooterSection } from "@/components/variant-3/footer-section";
 
 export default function VariantThreePage() {
   return (
@@ -11,7 +10,6 @@ export default function VariantThreePage() {
       <ServicesSection />
       <ProofSection />
       <CommercialSection />
-      <FooterSection />
     </main>
   );
 }
